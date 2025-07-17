@@ -21,21 +21,40 @@
 
 
 # # question number 2
-class Bank:
-    def __init__(self, balance):
-        self.balance = balance
+# class Bank:
+#     def __init__(self, balance):
+#         self.balance = balance
 
-    def deposit(self, add):
-        self.balance += add
-        return f"{add} added to ur acount new balance {self.balance}"
+#     def deposit(self, add):
+#         self.balance += add
+#         return f"{add} added to ur acount new balance {self.balance}"
 
-    def withdraw(self, bardasht):
-        if self.balance < bardasht:
-            return "ur balance is low"
-        self.balance -= bardasht
-        return f"{bardasht} of ur balance , new balance{self.balance}"
+#     def withdraw(self, bardasht):
+#         if self.balance < bardasht:
+#             return "ur balance is low"
+#         self.balance -= bardasht
+#         return f"{bardasht} of ur balance , new balance{self.balance}"
 
-    def cheack_balance(self):
-        return f" here,its ur balance {self.balance}"
+#     def cheack_balance(self):
+#         return f" here,its ur balance {self.balance}"
 
 
+# question number 3
+
+
+# class Recktangle:
+#     def __init__(self, lenght, width):
+#         self.lenght = lenght
+#         self.width = width
+
+#     def area(self):
+#         area_of_reactangle = (self.width + self.lenght) *2
+#         return area_of_reactangle
+    
+#     def perimeter(self):
+
+#          perimeter_of_recktangle = self.width * self.lenght
+#          return perimeter_of_recktangle
+    
+            
+        
