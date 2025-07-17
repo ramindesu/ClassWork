@@ -50,11 +50,39 @@
 #     def area(self):
 #         area_of_reactangle = (self.width + self.lenght) *2
 #         return area_of_reactangle
-    
+
 #     def perimeter(self):
 
-#          perimeter_of_recktangle = self.width * self.lenght
-#          return perimeter_of_recktangle
-    
-            
-        
+#         perimeter_of_recktangle = self.width * self.lenght
+#         return perimeter_of_recktangle
+
+# t1 = Recktangle(12,6)
+# print(t1.area())
+# print(t1.perimeter())
+
+
+# question number 4 =
+# class Book:
+#     list_of_books = list()
+
+#     def __init__(self, name, authtor, price):
+#         self.name = name
+#         self.author = authtor
+#         self.price = price
+
+
+# my_books = [
+#     Book("math", "person1", 1200),
+#     Book("physics", "person2", 1300),
+#     Book("chemistry", "person2", 1100),
+#     Book("python", "person4", 1500),
+# ]
+
+
+# def getting_book(books, price):
+#     for book in books:
+#         if book.price > price:
+#             return book.name
+
+
+# print(getting_book(my_books, 1200))
