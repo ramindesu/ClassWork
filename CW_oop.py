@@ -114,7 +114,6 @@
 #     name.discribe()
 
 
-
 # question number 6
 
 # class Robot:
@@ -130,4 +129,18 @@
 # print(Robot.counter)
 
 
+# # question number 7
+# class Thermometer:
+#     def __init__(self, cel=None, far=None):
+#         self.cel = cel
+#         self.far = far
 
+#     def to_cel(self):
+#         if self.far is None:
+#             return "You didn't enter the Fahrenheit temperature."
+#         return (self.far - 32) * 5 / 9
+
+#     def to_far(self):
+#         if self.cel is None:
+#             return "You didn't enter the Celsius temperature."
+#         return (self.cel * 9 / 5) + 32
