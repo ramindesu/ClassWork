@@ -81,8 +81,53 @@
 
 # def getting_book(books, price):
 #     for book in books:
-#         if book.price > price:
+#         if book.price < price:
 #             return book.name
 
 
 # print(getting_book(my_books, 1200))
+
+
+# question number 5
+# class Employee:
+#     def __init__(self, name, salary):
+#         self.name = name
+#         self.salary = salary
+
+#     def discribe(self):
+#         print(f"this is an employee name {self.name} with a salary of {self.salary}")
+
+
+# class Manager(Employee):
+#     def __init__(self, name, salary, department):
+#         self.department = department
+#         super().__init__(name, salary)
+
+#     def discribe(self):
+#         print(
+#             f"this is {self.name} manager of {self.department} department with salary of {self.salary}"
+#         )
+
+# ali = Employee("ali" , 200)
+# reza = Manager("reza" , 400 , "sells")
+# for name in [ali , reza]:
+#     name.discribe()
+
+
+
+# question number 6
+
+# class Robot:
+#     counter = 0
+#     def __init__(self):
+#         Robot.counter += 1
+#         self.robot_crated = Robot.counter
+
+# r1 = Robot()
+# r2 = Robot()
+# r3 = Robot()
+# r4 = Robot()
+# print(Robot.counter)
+
+
+
