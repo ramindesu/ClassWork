@@ -145,7 +145,8 @@
 #             return "You didn't enter the Celsius temperature."
 #         return (self.cel * 9 / 5) + 32
 
-
+# tem1 = Thermometer(cel=23)
+# print(tem1.to_far())
 # question number 8
 class Employee:
     employee_counter = []
@@ -160,7 +161,7 @@ class Employee:
     def decribe(self):
         return f"this employee {self.name} age: {self.age} with salary {self.salary}"
 
-    def give_rase(self, add):
+    def give_raise(self, add):
         self.salary += add
         return f"{add} just added to the salary new salary is {self.salary}"
 
@@ -177,11 +178,56 @@ class Employee:
     def avg_salary(cls):
         total = sum(employee.salary for employee in cls.employee_counter)
         return total / len(cls.employee_counter)
-    
+
     @classmethod
-    def validate_name(cls,name):
+    def validate_name(cls, name):
         for employee in cls.employee_counter:
             if employee.name == name:
                 return True
         return False
-        
+
+
+# question 9:
+class Class:
+    class_series = 10
+
+    def __init__(self, name, master, studens):
+        self.name_class = name
+        self.master = master
+        self.students = studens
+        Class.class_series += 10
+        self.class_id = Class.class_series
+
+    def avg_grades(self):
+        total = sum(student.grade for student in self.student)
+        return total // len(self.students)
+
+    def qty_of_students(self):
+        return len(self.students)
+
+    def top_five(self,):
+        pass
+
+class Human:
+    def __init__(self, name_lname, number, age, email):
+        self.name = name_lname
+        self.number = number
+        self.age = age
+        self.mail = email
+
+
+class Master(Human):
+    master_id = 0
+
+    def __init__(self, name_lname, number, age, email):
+        Master.master_id += 10
+        self.master_id = Master.master_id
+        super().__init__(name_lname, number, age, email)
+
+
+class student(Human):
+    student_id = 0
+
+    def __init__(self, name_lname, number, age, email, grade):
+        self.grade = grade
+        super().__init__(name_lname, number, age, email)
