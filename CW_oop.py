@@ -144,3 +144,44 @@
 #         if self.cel is None:
 #             return "You didn't enter the Celsius temperature."
 #         return (self.cel * 9 / 5) + 32
+
+
+# question number 8
+class Employee:
+    employee_counter = []
+
+    def __init__(self, name, age, salary):
+        Employee.employee_counter.append(self)
+        self.name = name
+        self.age = age
+        self.salary = salary
+        self.all_salary = []
+
+    def decribe(self):
+        return f"this employee {self.name} age: {self.age} with salary {self.salary}"
+
+    def give_rase(self, add):
+        self.salary += add
+        return f"{add} just added to the salary new salary is {self.salary}"
+
+    def validate_salary(self):
+        return f"this person{self.name} got his salary{self.salary}"
+
+    @classmethod
+    def give_raise_to_all(cls, add):
+        for employee in cls.employee_counter:
+            employee.salary += add
+        return "all employees got a raise"
+
+    @classmethod
+    def avg_salary(cls):
+        total = sum(employee.salary for employee in cls.employee_counter)
+        return total / len(cls.employee_counter)
+    
+    @classmethod
+    def validate_name(cls,name):
+        for employee in cls.employee_counter:
+            if employee.name == name:
+                return True
+        return False
+        
