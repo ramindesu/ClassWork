@@ -237,6 +237,10 @@ class student(Human):
         super().__init__(name_lname, number, age, email)
 
 
+
+
+
+# question 1
 class User:
     def __init__(self, password):
 
@@ -255,6 +259,47 @@ class User:
             self.__password = value
         else:
             raise ValueError("the pass word must be more than 8 character and must be string")
+
+
+
+# questin number 2
+class Book:
+    def __init__(self, title, id, price, writers):
+        self.title = title
+        self.id = id
+        self.price = price
+        self.writers = writers
+
+    def show_info(self):
+        return f"{self.title} - ID: {self.id}, Price: {self.price}"
+
+
+class PrintedBook(Book):
+    def __init__(self, title, id, price, page, writers):
+        self.page = page
+        super().__init__(title, id, price, writers)
+
+    def show_info(self):
+        return f"{self.title} (Printed), ID: {self.id}, Price: {self.price}, Pages: {self.page}"
+
+
+class ElectronicBook(Book):
+    def __init__(self, title, id, price, file_size, writers):
+        self.file_size = file_size
+        super().__init__(title, id, price, writers)
+
+    def show_info(self):
+        return f"{self.title} (E-Book), ID: {self.id}, Price: {self.price}, File Size: {self.file_size}MB"
+
+
+class Author:
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+
+
+    
+
 
 
 
