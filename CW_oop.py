@@ -145,6 +145,7 @@
 #             return "You didn't enter the Celsius temperature."
 #         return (self.cel * 9 / 5) + 32
 
+
 # tem1 = Thermometer(cel=23)
 # print(tem1.to_far())
 # question number 8
@@ -205,8 +206,11 @@ class Class:
     def qty_of_students(self):
         return len(self.students)
 
-    def top_five(self,):
+    def top_five(
+        self,
+    ):
         pass
+
 
 class Human:
     def __init__(self, name_lname, number, age, email):
@@ -231,3 +235,26 @@ class student(Human):
     def __init__(self, name_lname, number, age, email, grade):
         self.grade = grade
         super().__init__(name_lname, number, age, email)
+
+
+class User:
+    def __init__(self, password):
+
+        self.__password = None
+        self.change_pass = password
+
+
+    @property
+    def change_pass(self):
+        return self.__password
+
+
+    @change_pass.setter
+    def change_pass(self, value):
+        if isinstance(value,str) and len(str(value))>8:
+            self.__password = value
+        else:
+            raise ValueError("the pass word must be more than 8 character and must be string")
+
+
+
