@@ -298,15 +298,42 @@ class Author:
         self.email = email
 
 
-a1 = Author("Ramin", "ramin@example.com")
-a2 = Author("Sara", "sara@example.com")
+# a1 = Author("Ramin", "ramin@example.com")
+# a2 = Author("Sara", "sara@example.com")
 
-book1 = PrintedBook("Python 101", 1, 150, 300, [a1, a2])
-book2 = ElectronicBook("JavaScript Guide", 2, 100, 5, [a1])
+# book1 = PrintedBook("Python 101", 1, 150, 300, [a1, a2])
+# book2 = ElectronicBook("JavaScript Guide", 2, 100, 5, [a1])
 
-print(book1.show_info())
-print(book2.show_info())
-
-
+# print(book1.show_info())
+# print(book2.show_info())
 
 
+# question number 3
+class Score:
+    def __init__(self,value):
+        if isinstance(value,int):
+         self.value = value
+        else:
+            raise TypeError
+    def show_value(self):
+        return self.value
+    def __add__(self,other):
+        if isinstance(other,Score):
+            return Score(self.value + other.value)
+        return "not found"
+    def __sub__(self,other):
+        if isinstance(other,Score):
+            return Score(self.value - other.value)
+        return "not found"
+
+
+s1 = Score(23)
+s2 = Score(42)
+print(s1.show_value())
+print(s2.show_value())
+# print(s1.show_value())
+s3 = s1 + s2
+s4 = s2 - s1
+print(s3.show_value())
+print(s4.show_value())
+  
