@@ -298,7 +298,14 @@ class Author:
         self.email = email
 
 
-    
+a1 = Author("Ramin", "ramin@example.com")
+a2 = Author("Sara", "sara@example.com")
+
+book1 = PrintedBook("Python 101", 1, 150, 300, [a1, a2])
+book2 = ElectronicBook("JavaScript Guide", 2, 100, 5, [a1])
+
+print(book1.show_info())
+print(book2.show_info())
 
 
 
