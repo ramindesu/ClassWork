@@ -237,9 +237,6 @@ class student(Human):
         super().__init__(name_lname, number, age, email)
 
 
-
-
-
 # question 1
 class User:
     def __init__(self, password):
@@ -247,19 +244,18 @@ class User:
         self.__password = None
         self.change_pass = password
 
-
     @property
     def change_pass(self):
         return self.__password
 
-
     @change_pass.setter
     def change_pass(self, value):
-        if isinstance(value,str) and len(str(value))>8:
+        if isinstance(value, str) and len(str(value)) > 8:
             self.__password = value
         else:
-            raise ValueError("the pass word must be more than 8 character and must be string")
-
+            raise ValueError(
+                "the pass word must be more than 8 character and must be string"
+            )
 
 
 # questin number 2
@@ -310,30 +306,102 @@ class Author:
 
 # question number 3
 class Score:
-    def __init__(self,value):
-        if isinstance(value,int):
-         self.value = value
+    def __init__(self, value):
+        if isinstance(value, int):
+            self.value = value
         else:
             raise TypeError
+
     def show_value(self):
         return self.value
-    def __add__(self,other):
-        if isinstance(other,Score):
+
+    def __add__(self, other):
+        if isinstance(other, Score):
             return Score(self.value + other.value)
         return "not found"
-    def __sub__(self,other):
-        if isinstance(other,Score):
+
+    def __sub__(self, other):
+        if isinstance(other, Score):
             return Score(self.value - other.value)
         return "not found"
 
 
-s1 = Score(23)
-s2 = Score(42)
-print(s1.show_value())
-print(s2.show_value())
+# s1 = Score(23)
+# s2 = Score(42)
 # print(s1.show_value())
-s3 = s1 + s2
-s4 = s2 - s1
-print(s3.show_value())
-print(s4.show_value())
-  
+# print(s2.show_value())
+# # print(s1.show_value())
+# s3 = s1 + s2
+# s4 = s2 - s1
+# print(s3.show_value())
+# print(s4.show_value())
+class Post:
+    def __init__(self, content, post_id, like=0, share=0):
+        self.content = content
+        self.post_id = post_id
+        self.like = like
+        self.share = share
+
+    def show_full_info(self):
+        return f"ID: {self.post_id} Content: {self.content}, Likes: {self.like}, Shares: {self.share}"
+
+    def show_limited_info(self):
+        return f"Content: {self.content}"
+
+
+class Profile:
+    def __init__(self, name, email, join_date,type):
+        self.name = name
+        self.email = email
+        self.join_date = join_date
+        self.type = type
+        self.posts = []
+
+    def create_post(self, post_id, content, like=0, share=0):
+        post = Post(content, post_id, like, share)
+        self.posts.append(post)
+
+    def show_posts(self):
+        raise NotImplementedError("Subclasses must implement this method")
+
+
+class PremiumUser(Profile):
+    def show_posts(self):
+        return [post.show_full_info() for post in self.posts]
+
+    def total_likes(self):
+        return sum(post.like for post in self.posts)
+
+    def total_shares(self):
+        return sum(post.share for post in self.posts)
+
+    def del_post(self, post_id):
+        for post in self.posts:
+            if post.post_id == post_id:
+                self.posts.remove(post)
+                return f"Post {post_id} deleted."
+        return "Post not found."
+
+    def edit(self, id, value):
+        for post in self.posts:
+            if post.post_id == id:
+                post.content = value
+
+
+class StandardUser(Profile):
+    def show_posts(self):
+        return [post.show_limited_info() for post in self.posts]
+
+
+
+user1 =PremiumUser("name","email",2024,"permium")
+user1.create_post(103,"hello world",20,25)
+user1.create_post(104,"hello hell",20,25)
+
+# print(user1.show_posts())
+# print(user1.total_likes())
+# print(user1.total_shares())
+# print(user1.del_post(104))
+print(user1.edit(103,"made in heaven"))
+print(user1.show_posts())
+
