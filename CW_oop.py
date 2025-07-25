@@ -335,73 +335,94 @@ class Score:
 # s4 = s2 - s1
 # print(s3.show_value())
 # print(s4.show_value())
-class Post:
-    def __init__(self, content, post_id, like=0, share=0):
-        self.content = content
-        self.post_id = post_id
-        self.like = like
-        self.share = share
+# class Post:
+#     def __init__(self, content, post_id, like=0, share=0):
+#         self.content = content
+#         self.post_id = post_id
+#         self.like = like
+#         self.share = share
 
-    def show_full_info(self):
-        return f"ID: {self.post_id} Content: {self.content}, Likes: {self.like}, Shares: {self.share}"
+#     def show_full_info(self):
+#         return f"ID: {self.post_id} Content: {self.content}, Likes: {self.like}, Shares: {self.share}"
 
-    def show_limited_info(self):
-        return f"Content: {self.content}"
-
-
-class Profile:
-    def __init__(self, name, email, join_date,type):
-        self.name = name
-        self.email = email
-        self.join_date = join_date
-        self.type = type
-        self.posts = []
-
-    def create_post(self, post_id, content, like=0, share=0):
-        post = Post(content, post_id, like, share)
-        self.posts.append(post)
-
-    def show_posts(self):
-        raise NotImplementedError("Subclasses must implement this method")
+#     def show_limited_info(self):
+#         return f"Content: {self.content}"
 
 
-class PremiumUser(Profile):
-    def show_posts(self):
-        return [post.show_full_info() for post in self.posts]
+# class Profile:
+#     def __init__(self, name, email, join_date,type):
+#         self.name = name
+#         self.email = email
+#         self.join_date = join_date
+#         self.type = type
+#         self.posts = []
 
-    def total_likes(self):
-        return sum(post.like for post in self.posts)
+#     def create_post(self, post_id, content, like=0, share=0):
+#         post = Post(content, post_id, like, share)
+#         self.posts.append(post)
 
-    def total_shares(self):
-        return sum(post.share for post in self.posts)
-
-    def del_post(self, post_id):
-        for post in self.posts:
-            if post.post_id == post_id:
-                self.posts.remove(post)
-                return f"Post {post_id} deleted."
-        return "Post not found."
-
-    def edit(self, id, value):
-        for post in self.posts:
-            if post.post_id == id:
-                post.content = value
+#     def show_posts(self):
+#         raise NotImplementedError("Subclasses must implement this method")
 
 
-class StandardUser(Profile):
-    def show_posts(self):
-        return [post.show_limited_info() for post in self.posts]
+# class PremiumUser(Profile):
+#     def show_posts(self):
+#         return [post.show_full_info() for post in self.posts]
+
+#     def total_likes(self):
+#         return sum(post.like for post in self.posts)
+
+#     def total_shares(self):
+#         return sum(post.share for post in self.posts)
+
+#     def del_post(self, post_id):
+#         for post in self.posts:
+#             if post.post_id == post_id:
+#                 self.posts.remove(post)
+#                 return f"Post {post_id} deleted."
+#         return "Post not found."
+
+#     def edit(self, id, value):
+#         for post in self.posts:
+#             if post.post_id == id:
+#                 post.content = value
+
+
+# class StandardUser(Profile):
+#     def show_posts(self):
+#         return [post.show_limited_info() for post in self.posts]
 
 
 
-user1 =PremiumUser("name","email",2024,"permium")
-user1.create_post(103,"hello world",20,25)
-user1.create_post(104,"hello hell",20,25)
+# user1 =PremiumUser("name","email",2024,"permium")
+# user1.create_post(103,"hello world",20,25)
+# user1.create_post(104,"hello hell",20,25)
 
+# # print(user1.show_posts())
+# # print(user1.total_likes())
+# # print(user1.total_shares())
+# # print(user1.del_post(104))
+# print(user1.edit(103,"made in heaven"))
 # print(user1.show_posts())
-# print(user1.total_likes())
-# print(user1.total_shares())
-# print(user1.del_post(104))
-print(user1.edit(103,"made in heaven"))
-print(user1.show_posts())
 
+
+
+class SchoolStaff:
+    def __init__(self,name,role):
+        self.name = name
+        self.role = role
+
+    def set_grade(self,student,grade):
+        if self.role == "teacher" and 0<=grade<=20: 
+            student.grade = grade
+        else:
+            if self.role != "teacher":
+                raise PermissionError("Only teachers can set grades")
+            if not 0 < grade <= 20:
+                raise ValueError("Grade must be between 0 and 20")
+
+class Student:
+    def __init__(self,name,grade):
+        self.name = name
+        self.grade = grade
+        
