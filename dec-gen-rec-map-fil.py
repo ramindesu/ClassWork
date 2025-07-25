@@ -45,3 +45,31 @@ import time
 #             break
 
 # seconds()
+
+# question numner 3
+
+
+# def access(role_required):
+#     def decorator(func):
+#         def wrapper(self, *args, **kwargs):
+#             if self.role == role_required:
+#                 return func(self, *args, **kwargs)
+#             else:
+#                 print(f"Access denied. You need the '{role_required}' role to perform this action.")
+#                 return None
+#         return wrapper
+#     return decorator
+
+# class Project_System:
+#     def __init__(self, name, role):
+#         self.name = name
+#         self.role = role
+#         self.project = []
+#     @access("manager")
+#     def add_project(self, project):
+#         self.project.append(project)
+#     @access("manager")
+#     def remove_project(self, project):
+#         if project in self.project:
+#             self.project.remove(project)
+    
