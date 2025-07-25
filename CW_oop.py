@@ -393,7 +393,6 @@ class Score:
 #         return [post.show_limited_info() for post in self.posts]
 
 
-
 # user1 =PremiumUser("name","email",2024,"permium")
 # user1.create_post(103,"hello world",20,25)
 # user1.create_post(104,"hello hell",20,25)
@@ -406,14 +405,14 @@ class Score:
 # print(user1.show_posts())
 
 
-
+# question number2
 class SchoolStaff:
-    def __init__(self,name,role):
+    def __init__(self, name, role):
         self.name = name
         self.role = role
 
-    def set_grade(self,student,grade):
-        if self.role == "teacher" and 0<=grade<=20: 
+    def set_grade(self, student, grade):
+        if self.role == "teacher" and 0 <= grade <= 20:
             student.grade = grade
         else:
             if self.role != "teacher":
@@ -421,8 +420,8 @@ class SchoolStaff:
             if not 0 < grade <= 20:
                 raise ValueError("Grade must be between 0 and 20")
 
+
 class Student:
-    def __init__(self,name,grade):
+    def __init__(self, name, grade):
         self.name = name
         self.grade = grade
-        
