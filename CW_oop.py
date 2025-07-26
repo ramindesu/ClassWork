@@ -434,6 +434,9 @@ class Book:
         self.author = author
         self.published = published
 
+    def __repr__(self):
+        return f"{self.title} by {self.author} ({self.published})"
+
 
 class Library:
     def __init__(self):
@@ -441,20 +444,20 @@ class Library:
 
     def add_book(self, book):
         if book in self.books:
-            return "this book is already exist"
+            return "This book already exists."
         self.books.append(book)
 
-    def delet(self, book):
+    def delete(self, book):
         if book in self.books:
             self.books.remove(book)
         else:
-            return "this book doesnt exixst"
+            return "This book doesn't exist."
 
     def searching(self, title):
         for book in self.books:
             if book.title == title:
-                return book.title
-            return "book doesnt exist"
+                return book
+        return "Book doesn't exist."
 
     def __len__(self):
         return len(self.books)
@@ -462,11 +465,10 @@ class Library:
     def __getitem__(self, key):
         if isinstance(key, int):
             return self.books[key]
-        else:
-            return "not found"
+        return "Not found."
 
     def __iter__(self):
-        return self.books
+        return iter(self.books)
 
     def __contains__(self, book):
-        return book.title in self.books
+        return any(b.title == book.title for b in self.books)
