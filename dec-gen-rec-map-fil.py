@@ -72,4 +72,41 @@ import time
 #     def remove_project(self, project):
 #         if project in self.project:
 #             self.project.remove(project)
+#     def show(self):
+#         all_p = [project for project in self.project]
+#         return all_p
     
+# a1 = Project_System("ali","manager")
+# a2 = Project_System("ali","dev")
+# a1.add_project("my project")
+# a1.add_project("my ")
+# # a2.add_project("my start ")
+# print(a2.show())
+# question number 4
+
+
+# question number 4
+# def accses_dec(func):
+#     excute_limit = [0]
+#     def wrapper(*args,**kwargs):
+#         if excute_limit[0] < 3:
+#             excute_limit[0]+=1
+#             return func(*args,**kwargs)
+#         else:
+#             return "attamped faild u reach ur limit bruh"
+#     return wrapper
+        
+
+# @accses_dec
+# def printing(input):
+#     return input
+
+# print(printing("one"))
+# print(printing("two"))
+# print(printing("three"))
+# print(printing("four"))
+
+
+
+
+

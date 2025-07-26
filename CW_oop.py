@@ -406,22 +406,67 @@ class Score:
 
 
 # question number2
-class SchoolStaff:
-    def __init__(self, name, role):
-        self.name = name
-        self.role = role
+# class SchoolStaff:
+#     def __init__(self, name, role):
+#         self.name = name
+#         self.role = role
 
-    def set_grade(self, student, grade):
-        if self.role == "teacher" and 0 <= grade <= 20:
-            student.grade = grade
+#     def set_grade(self, student, grade):
+#         if self.role == "teacher" and 0 <= grade <= 20:
+#             student.grade = grade
+#         else:
+#             if self.role != "teacher":
+#                 raise PermissionError("Only teachers can set grades")
+#             if not 0 < grade <= 20:
+#                 raise ValueError("Grade must be between 0 and 20")
+
+
+# class Student:
+#     def __init__(self, name, grade):
+#         self.name = name
+#         self.grade = grade
+
+
+# def question number 3
+class Book:
+    def __init__(self, title, author, published):
+        self.title = title
+        self.author = author
+        self.published = published
+
+
+class Library:
+    def __init__(self):
+        self.books = []
+
+    def add_book(self, book):
+        if book in self.books:
+            return "this book is already exist"
+        self.books.append(book)
+
+    def delet(self, book):
+        if book in self.books:
+            self.books.remove(book)
         else:
-            if self.role != "teacher":
-                raise PermissionError("Only teachers can set grades")
-            if not 0 < grade <= 20:
-                raise ValueError("Grade must be between 0 and 20")
+            return "this book doesnt exixst"
 
+    def searching(self, title):
+        for book in self.books:
+            if book.title == title:
+                return book.title
+            return "book doesnt exist"
 
-class Student:
-    def __init__(self, name, grade):
-        self.name = name
-        self.grade = grade
+    def __len__(self):
+        return len(self.books)
+
+    def __getitem__(self, key):
+        if isinstance(key, int):
+            return self.books[key]
+        else:
+            return "not found"
+
+    def __iter__(self):
+        return self.books
+
+    def __contains__(self, book):
+        return book.title in self.books
