@@ -475,18 +475,19 @@ class Score:
 
 
 # # question number 1
-# from abc import ABC,abstractmethod
+from abc import ABC, abstractmethod
+
 # class Shape(ABC):
 
 #     @abstractmethod
 #     def area(self):
 #         pass
-    
+
 #     @abstractmethod
 #     def perimeter(self):
 #         pass
 
-# class Rectangle(Shape): # 
+# class Rectangle(Shape): #
 #     def __init__(self, width, height):
 #         if width > 0 and height > 0:
 #             self.width = width
@@ -507,7 +508,7 @@ class Score:
 
 #     def perimeter(self):
 #         return self.pi * (self.radius **2)
-    
+
 #     def area(self):
 #         return 2*self.pi*self.radius
 
@@ -519,22 +520,22 @@ class Score:
 #             self.side_b = side_b
 #             self.base = base
 #             self.height = height
-        
+
 #     def area(self):
 #         return 0.5 * self.base * self.height
-    
+
 #     def perimeter(self):
 #         perimeter_of_tringle = self.side_a + self.side_b + self.base
 #         return perimeter_of_tringle
-        
+
 # question number 2
 # class ReprMixin:
 #     def __repr__(self):
 #         return f"{self.__class__.__name__}({self.__dict__})"
-    
+
 #     def __str__(self):
 #         return f"{self.__class__.__name__} object"
-    
+
 # class Book(ReprMixin):
 #     def __init__(self, title, author, year):
 #         self.title = title
@@ -548,7 +549,7 @@ class Score:
 #         self.model = model
 #         self.year = year
 #         self.color = color
-    
+
 # book = Book("The Alchemist", "Paulo Coelho", 1988)
 # car = Car("Toyota", "Corolla", 2020, "White")
 
@@ -556,7 +557,50 @@ class Score:
 # print(repr(book))
 # print(car)
 # print(repr(car))
-    
 
-        
-        
+
+# question number 3
+
+
+# class VehicleFactory(ABC):
+
+#     @abstractmethod
+#     def create_vehicle(self):
+#         pass
+
+
+# class Car:
+#     def __init__(self):
+#         pass
+
+#     def creat(self):
+#         return "created a car"
+
+
+# class Bike:
+#     def __init__(self):
+#         pass
+
+#     def creat(self):
+#         return "created a bike"
+
+
+# class CarFactory(VehicleFactory):
+#     def create_vehicle(self):
+#         return Car()
+
+
+# class BikeFactory(VehicleFactory):
+#     def create_vehicle(self):
+#         return Bike()
+
+
+# def get_factory(vehicle_type):
+#     if vehicle_type.lower() == "car":
+#         return CarFactory()
+#     elif vehicle_type.lower() == "bike":
+#         return BikeFactory()
+
+# f = get_factory("car")
+# v = f.create_vehicle()
+# print(v.creat())
