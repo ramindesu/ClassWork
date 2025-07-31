@@ -474,59 +474,88 @@ class Score:
 #         return any(b.title == book.title for b in self.books)
 
 
-# question number 1
-from abc import ABC,abstractmethod
-class Shape(ABC):
+# # question number 1
+# from abc import ABC,abstractmethod
+# class Shape(ABC):
 
-    @abstractmethod
-    def area(self):
-        pass
+#     @abstractmethod
+#     def area(self):
+#         pass
     
-    @abstractmethod
-    def perimeter(self):
-        pass
+#     @abstractmethod
+#     def perimeter(self):
+#         pass
 
-class Rectangle(Shape): # 
-    def __init__(self, width, height):
-        if width > 0 and height > 0:
-            self.width = width
-            self.height = height
+# class Rectangle(Shape): # 
+#     def __init__(self, width, height):
+#         if width > 0 and height > 0:
+#             self.width = width
+#             self.height = height
 
-    def area(self):
-        return self.width * self.height
+#     def area(self):
+#         return self.width * self.height
 
-    def perimeter(self):
-        return 2 * (self.width + self.height)
+#     def perimeter(self):
+#         return 2 * (self.width + self.height)
 
 
-class Circle(Shape):
-    def __init__(self,radius , pi =3.141629):
-        if radius > 0 :
-            self.pi = pi
-            self.radius = radius
+# class Circle(Shape):
+#     def __init__(self,radius , pi =3.141629):
+#         if radius > 0 :
+#             self.pi = pi
+#             self.radius = radius
 
-    def perimeter(self):
-        return self.pi * (self.radius **2)
+#     def perimeter(self):
+#         return self.pi * (self.radius **2)
     
-    def area(self):
-        return 2*self.pi*self.radius
+#     def area(self):
+#         return 2*self.pi*self.radius
 
 
-class Tingle(Shape):
-    def __init__(self,side_a,side_b,base,height):
-        if (side_a,side_b,base,height) > 0:
-            self.side_a = side_a
-            self.side_b = side_b
-            self.base = base
-            self.height = height
+# class Tingle(Shape):
+#     def __init__(self,side_a,side_b,base,height):
+#         if (side_a,side_b,base,height) > 0:
+#             self.side_a = side_a
+#             self.side_b = side_b
+#             self.base = base
+#             self.height = height
         
-    def area(self):
-        return 0.5 * self.base * self.height
+#     def area(self):
+#         return 0.5 * self.base * self.height
     
-    def perimeter(self):
-        perimeter_of_tringle = self.side_a + self.side_b + self.base
-        return perimeter_of_tringle
+#     def perimeter(self):
+#         perimeter_of_tringle = self.side_a + self.side_b + self.base
+#         return perimeter_of_tringle
         
+# question number 2
+# class ReprMixin:
+#     def __repr__(self):
+#         return f"{self.__class__.__name__}({self.__dict__})"
+    
+#     def __str__(self):
+#         return f"{self.__class__.__name__} object"
+    
+# class Book(ReprMixin):
+#     def __init__(self, title, author, year):
+#         self.title = title
+#         self.author = author
+#         self.year = year
+
+
+# class Car(ReprMixin):
+#     def __init__(self, brand, model, year, color):
+#         self.brand = brand
+#         self.model = model
+#         self.year = year
+#         self.color = color
+    
+# book = Book("The Alchemist", "Paulo Coelho", 1988)
+# car = Car("Toyota", "Corolla", 2020, "White")
+
+# print(book)
+# print(repr(book))
+# print(car)
+# print(repr(car))
     
 
         
