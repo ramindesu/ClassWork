@@ -428,47 +428,106 @@ class Score:
 
 
 # def question number 3
-class Book:
-    def __init__(self, title, author, published):
-        self.title = title
-        self.author = author
-        self.published = published
+# class Book:
+#     def __init__(self, title, author, published):
+#         self.title = title
+#         self.author = author
+#         self.published = published
 
-    def __repr__(self):
-        return f"{self.title} by {self.author} ({self.published})"
+#     def __repr__(self):
+#         return f"{self.title} by {self.author} ({self.published})"
 
 
-class Library:
-    def __init__(self):
-        self.books = []
+# class Library:
+#     def __init__(self):
+#         self.books = []
 
-    def add_book(self, book):
-        if book in self.books:
-            return "This book already exists."
-        self.books.append(book)
+#     def add_book(self, book):
+#         if book in self.books:
+#             return "This book already exists."
+#         self.books.append(book)
 
-    def delete(self, book):
-        if book in self.books:
-            self.books.remove(book)
-        else:
-            return "This book doesn't exist."
+#     def delete(self, book):
+#         if book in self.books:
+#             self.books.remove(book)
+#         else:
+#             return "This book doesn't exist."
 
-    def searching(self, title):
-        for book in self.books:
-            if book.title == title:
-                return book
-        return "Book doesn't exist."
+#     def searching(self, title):
+#         for book in self.books:
+#             if book.title == title:
+#                 return book
+#         return "Book doesn't exist."
 
-    def __len__(self):
-        return len(self.books)
+#     def __len__(self):
+#         return len(self.books)
 
-    def __getitem__(self, key):
-        if isinstance(key, int):
-            return self.books[key]
-        return "Not found."
+#     def __getitem__(self, key):
+#         if isinstance(key, int):
+#             return self.books[key]
+#         return "Not found."
 
-    def __iter__(self):
-        return iter(self.books)
+#     def __iter__(self):
+#         return iter(self.books)
 
-    def __contains__(self, book):
-        return any(b.title == book.title for b in self.books)
+#     def __contains__(self, book):
+#         return any(b.title == book.title for b in self.books)
+
+
+# question number 1
+from abc import ABC,abstractmethod
+class Shape(ABC):
+
+    @abstractmethod
+    def area(self):
+        pass
+    
+    @abstractmethod
+    def perimeter(self):
+        pass
+
+class Rectangle(Shape): # 
+    def __init__(self, width, height):
+        if width > 0 and height > 0:
+            self.width = width
+            self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+    def perimeter(self):
+        return 2 * (self.width + self.height)
+
+
+class Circle(Shape):
+    def __init__(self,radius , pi =3.141629):
+        if radius > 0 :
+            self.pi = pi
+            self.radius = radius
+
+    def perimeter(self):
+        return self.pi * (self.radius **2)
+    
+    def area(self):
+        return 2*self.pi*self.radius
+
+
+class Tingle(Shape):
+    def __init__(self,side_a,side_b,base,height):
+        if (side_a,side_b,base,height) > 0:
+            self.side_a = side_a
+            self.side_b = side_b
+            self.base = base
+            self.height = height
+        
+    def area(self):
+        return 0.5 * self.base * self.height
+    
+    def perimeter(self):
+        perimeter_of_tringle = self.side_a + self.side_b + self.base
+        return perimeter_of_tringle
+        
+    
+
+        
+        
