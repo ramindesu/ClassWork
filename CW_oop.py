@@ -604,3 +604,40 @@ from abc import ABC, abstractmethod
 # f = get_factory("car")
 # v = f.create_vehicle()
 # print(v.creat())
+
+
+# question 4
+class Song:
+    def __init__(self,name,type,min):
+        self.name = name 
+        self.type = type
+        self.min = min
+    
+class Plylist:
+    def __init__(self):
+        self.song_list = []
+    
+    def add_songs(self,songs):
+        self.song_list.append(songs)
+
+    def remove_song(self,song):
+        for songs in self.song_list:
+            if songs.name == song:
+                self.song_list.remove(songs)
+    
+    def total_duration(self):
+        all_min = 0
+        for song in self.song_list:
+            all_min += song.min
+        return all_min
+
+s1 = Song("Shape of You", "Pop", 4)
+s2 = Song("Thunder", "Rock", 3)
+
+pl = Plylist()
+pl.add_song(s1)
+pl.add_song(s2)
+
+print("Total Duration:", pl.total_duration())  
+pl.remove_song("Shape of You")
+print("Total Duration after removal:", pl.total_duration())  
