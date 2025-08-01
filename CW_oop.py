@@ -607,37 +607,151 @@ from abc import ABC, abstractmethod
 
 
 # question 4
-class Song:
-    def __init__(self,name,type,min):
-        self.name = name 
-        self.type = type
-        self.min = min
+# class Song:
+#     def __init__(self,name,type,min):
+#         self.name = name
+#         self.type = type
+#         self.min = min
+
+# class Plylist:
+#     def __init__(self):
+#         self.song_list = []
+
+#     def add_songs(self,songs):
+#         self.song_list.append(songs)
+
+#     def remove_song(self,song):
+#         for songs in self.song_list:
+#             if songs.name == song:
+#                 self.song_list.remove(songs)
+
+#     def total_duration(self):
+#         all_min = 0
+#         for song in self.song_list:
+#             all_min += song.min
+#         return all_min
+
+# s1 = Song("Shape of You", "Pop", 4)
+# s2 = Song("Thunder", "Rock", 3)
+
+# pl = Plylist()
+# pl.add_song(s1)
+# pl.add_song(s2)
+
+# print("Total Duration:", pl.total_duration())
+# pl.remove_song("Shape of You")
+# print("Total Duration after removal:", pl.total_duration())
+
+
+# qustion 1
+# class Employee(ABC):
+
+#     @abstractmethod
+#     def calc_salary(self):
+#         pass
+
+
+# class HourlyEmployee(Employee):
+#     PAY_HOUR = 8
+
+#     def __init__(self, name, hours, role,id):
+
+#         self.name = name
+#         self.hours = hours
+#         self.role = role
+#         self.id = id
+
+#     def calc_salary(self):
+#         return self.hours * self.PAY_HOUR
+
+
+# class SalariedEmployee(Employee):
+#     MONTHLY_PAY = 2000
+#     MONTH_DAY = 30
+
+#     def __init__(self, name, role, days,id):
+#         self.name = name
+#         self.role = role
+#         self.days = days
+#         self.id = id
+
+#     def calc_salary(self):
+#         return(self.MONTHLY_PAY / self.MONTH_DAY) * self.days
+
+
+# class Manager(Employee):
+#     MONTHLY_PAY = 2000
+#     MONTH_DAY = 30
+
+#     def __init__(self, name, depratmetn, commission,id,days):
+#         self.name = name
+#         self.department = depratmetn
+#         self.commission = commission
+#         self.id = id
+#         self.days = days
+
+#     def calc_salary(self):
+#         each_day = self.MONTHLY_PAY / self.MONTH_DAY
+#         monthly = each_day * self.days
+#         return monthly + self.commission
+
+
+# class Executive(Employee):
+#     MONTHLY_PAY = 5000
+#     MONTH_DAY = 30
+#     def __init__(self, name, department, section,id,days):
+#         self.name = name
+#         self.department = department
+#         self.section = section
+#         self.id = id
+#         self.days =days
+
+#     def calc_salary(self):
+#         return (self.MONTHLY_PAY / self.MONTH_DAY) * self.days
     
-class Plylist:
-    def __init__(self):
-        self.song_list = []
+# class Company:
+#     def __init__(self):
+#         self.emps = []
+
+#     def hire_emp(self,emp):
+#         self.emps.append(emp)
+#         return f"u just hired {emp.name}"
     
-    def add_songs(self,songs):
-        self.song_list.append(songs)
 
-    def remove_song(self,song):
-        for songs in self.song_list:
-            if songs.name == song:
-                self.song_list.remove(songs)
-    
-    def total_duration(self):
-        all_min = 0
-        for song in self.song_list:
-            all_min += song.min
-        return all_min
+#     def fire_emp(self,id):
+#         for emp in self.emps:
+#             if emp.id == id:
+#                 self.emps.remove(emp)
 
-s1 = Song("Shape of You", "Pop", 4)
-s2 = Song("Thunder", "Rock", 3)
+#     def give_raise(self,id,ampunt):
+#         for emp in self.emps:
+#             if emp.id == id:
+#                 if isinstance(emp,HourlyEmployee):
+#                     HourlyEmployee.PAY_HOUR += ampunt
+#                 elif isinstance(emp, SalariedEmployee):
+#                     SalariedEmployee.MONTHLY_PAY +=ampunt
+#                     return f" Monthly salary increased to {SalariedEmployee.MONTHLY_PAY}"
+#                 elif isinstance(emp, Manager):
+#                     Manager.MONTHLY_PAY += ampunt
+#                     return f" Manager salary increased to {Manager.MONTHLY_PAY}"
+#                 elif isinstance(emp, Executive):
+#                     Executive.MONTHLY_PAY += ampunt
+#                     return f" Executive salary increased to {Executive.MONTHLY_PAY}"
+#         return "Employee not found."
+                    
 
-pl = Plylist()
-pl.add_song(s1)
-pl.add_song(s2)
+# c = Company()
+# e1 = HourlyEmployee("Ali", 40, "cleaner", 1)
+# e2 = Manager("Sara", "IT", 500, 2, 20)
 
-print("Total Duration:", pl.total_duration())  
-pl.remove_song("Shape of You")
-print("Total Duration after removal:", pl.total_duration())  
+# print(c.hire_emp(e1))  
+# print(c.hire_emp(e2)) 
+
+# print("Ali's Salary:", e1.calc_salary())   
+# print("Sara's Salary:", e2.calc_salary())   
+# print(c.give_raise(1, 2))                   
+# print("Ali's New Salary:", e1.calc_salary())
+
+
+
+# question 2
