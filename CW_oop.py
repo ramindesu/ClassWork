@@ -708,7 +708,7 @@ from abc import ABC, abstractmethod
 
 #     def calc_salary(self):
 #         return (self.MONTHLY_PAY / self.MONTH_DAY) * self.days
-    
+
 # class Company:
 #     def __init__(self):
 #         self.emps = []
@@ -716,7 +716,7 @@ from abc import ABC, abstractmethod
 #     def hire_emp(self,emp):
 #         self.emps.append(emp)
 #         return f"u just hired {emp.name}"
-    
+
 
 #     def fire_emp(self,id):
 #         for emp in self.emps:
@@ -738,42 +738,108 @@ from abc import ABC, abstractmethod
 #                     Executive.MONTHLY_PAY += ampunt
 #                     return f" Executive salary increased to {Executive.MONTHLY_PAY}"
 #         return "Employee not found."
-                    
+
 
 # c = Company()
 # e1 = HourlyEmployee("Ali", 40, "cleaner", 1)
 # e2 = Manager("Sara", "IT", 500, 2, 20)
 
-# print(c.hire_emp(e1))  
-# print(c.hire_emp(e2)) 
+# print(c.hire_emp(e1))
+# print(c.hire_emp(e2))
 
-# print("Ali's Salary:", e1.calc_salary())   
-# print("Sara's Salary:", e2.calc_salary())   
-# print(c.give_raise(1, 2))                   
+# print("Ali's Salary:", e1.calc_salary())
+# print("Sara's Salary:", e2.calc_salary())
+# print(c.give_raise(1, 2))
 # print("Ali's New Salary:", e1.calc_salary())
-
 
 
 # question 2
 
-class Logger:
-    def __init__(self,filename):
-        self.filename = filename
-        self.file = open(self.filename,"a") 
-        print(f"opened {self.filename}")
+# class Logger:
+#     def __init__(self,filename):
+#         self.filename = filename
+#         self.file = open(self.filename,"a")
+#         print(f"opened {self.filename}")
 
-    def write(self,massage):
-        self.file.write(massage + "\n")
+#     def write(self,massage):
+#         self.file.write(massage + "\n")
 
-    def __del__(self):
-        self.file.close()
-        print(f"{self.filename} is closed")
+#     def __del__(self):
+#         self.file.close()
+#         print(f"{self.filename} is closed")
 
-logger = Logger("log.txt")
-logger.write("hello world")
-logger.write("Something")
+# logger = Logger("log.txt")
+# logger.write("hello world")
+# logger.write("Something")
 
 
-del logger
-    
-        
+# del logger
+
+
+# questiom 3
+
+
+def calc_circle_area(radius):
+    """
+    Calculate the area of a circle using the formula:
+        circumference = 2 * π * radius
+
+    Args:
+        radius:  radius of the circle.
+
+    Returns:
+        float:  area of the circle.
+    """
+    # return 2 * 3.14 * radius
+
+
+# class ReportGenerator:
+#     def generate(self) :
+#         """
+#         Generates the content of the report.
+#         Returns:
+#             str: The content of the report.
+#         """
+#         return "Report content"
+
+
+# class FileSaver:
+#     def save_to_file(self, content, filename):
+#         """
+#         Saves the given content to a file.
+
+#         """
+#         with open(filename, 'w') as f:
+#             f.write(content)
+
+
+# def read_file(filename):
+#     """
+#     Reads all lines from the given file.
+
+#     """
+#     with open(filename) as f:
+#         return f.readlines()
+
+
+# def clean_lines(lines) :
+#     """
+#     Removes whitespace and newline characters from each line.
+#     """
+#     return [line.strip() for line in lines]
+
+
+# def parse_numbers(lines):
+#     """
+#     Filters lines that are purely digits and converts them to integers.
+#     """
+#     return [int(x) for x in lines if x.isdigit()]
+
+# def process_data(filename):
+#     """
+#     Reads, cleans, and parses numeric data from a file.
+#     """
+#     raw_lines = read_file(filename)
+#     cleaned = clean_lines(raw_lines)
+#     numbers = parse_numbers(cleaned)
+#     print(len(numbers))
