@@ -553,13 +553,13 @@ from abc import ABC, abstractmethod
 # book = Book("The Alchemist", "Paulo Coelho", 1988)
 # car = Car("Toyota", "Corolla", 2020, "White")
 
-# print(book)
-# print(repr(book))
-# print(car)
-# print(repr(car))
+# # print(book)
+# # print(repr(book))
+# # print(car)
+# # print(repr(car))
 
 
-# question number 3
+# # question number 3
 
 
 # class VehicleFactory(ABC):
@@ -606,141 +606,143 @@ from abc import ABC, abstractmethod
 # print(v.creat())
 
 
-# question 4
-# class Song:
-#     def __init__(self,name,type,min):
+# # question 4
+# # class Song:
+# #     def __init__(self,name,type,min):
+# #         self.name = name
+# #         self.type = type
+# #         self.min = min
+
+# # class Plylist:
+# #     def __init__(self):
+# #         self.song_list = []
+
+# #     def add_songs(self,songs):
+# #         self.song_list.append(songs)
+
+# #     def remove_song(self,song):
+# #         for songs in self.song_list:
+# #             if songs.name == song:
+# #                 self.song_list.remove(songs)
+
+# #     def total_duration(self):
+# #         all_min = 0
+# #         for song in self.song_list:
+# #             all_min += song.min
+# #         return all_min
+
+# # s1 = Song("Shape of You", "Pop", 4)
+# # s2 = Song("Thunder", "Rock", 3)
+
+# # pl = Plylist()
+# # pl.add_song(s1)
+# # pl.add_song(s2)
+
+# # print("Total Duration:", pl.total_duration())
+# # pl.remove_song("Shape of You")
+# # print("Total Duration after removal:", pl.total_duration())
+
+
+# # qustion 1
+# class Employee(ABC):
+
+#     @abstractmethod
+#     def calc_salary(self):
+#         pass
+
+
+# class HourlyEmployee(Employee):
+#     PAY_HOUR = 8
+
+#     def __init__(self, name, hours, role, hourly_id):
+
 #         self.name = name
-#         self.type = type
-#         self.min = min
+#         self.hours = hours
+#         self.role = role
+#         self.id = hourly_id
 
-# class Plylist:
+#     def calc_salary(self):
+#         return self.hours * self.PAY_HOUR
+
+
+# class SalariedEmployee(Employee):
+
+#     MONTH_DAY = 30
+
+#     def __init__(self, name, role, days, emp_id, monthly_pay):
+#         self.name = name
+#         self.role = role
+#         self.days = days
+#         self.id = emp_id
+#         self.monthly_pay = monthly_pay
+
+#     def calc_salary(self):
+#         return (self.monthly_pay / self.MONTH_DAY) * self.days
+
+
+# class Manager(SalariedEmployee):
+#     def __init__(self, name, role, days, emp_id, monthly_pay, section, commission):
+#         self.commission = commission
+#         self.section = section
+
+#         super().__init__(name, role, days, emp_id, monthly_pay)
+
+#     def calc_salary(self):
+#         each_day = self.monthly_pay / self.MONTH_DAY
+#         monthly = each_day * self.days
+#         return monthly + self.commission
+
+
+# class Executive(SalariedEmployee):
+#     def __init__(
+#         self,
+#         name,
+#         role,
+#         days,
+#         emp_id,
+#         monthly_pay,
+#         department,
+#     ):
+#         self.department = department
+#         super().__init__(name, role, days, emp_id, monthly_pay)
+
+
+# class Company:
 #     def __init__(self):
-#         self.song_list = []
+#         self.emps = []
 
-#     def add_songs(self,songs):
-#         self.song_list.append(songs)
+#     def hire_emp(self, emp):
+#         self.emps.append(emp)
+#         return f"u just hired {emp.name}"
 
-#     def remove_song(self,song):
-#         for songs in self.song_list:
-#             if songs.name == song:
-#                 self.song_list.remove(songs)
+#     def fire_emp(self, id):
+#         for emp in self.emps:
+#             if emp.id == id:
+#                 self.emps.remove(emp)
 
-#     def total_duration(self):
-#         all_min = 0
-#         for song in self.song_list:
-#             all_min += song.min
-#         return all_min
-
-# s1 = Song("Shape of You", "Pop", 4)
-# s2 = Song("Thunder", "Rock", 3)
-
-# pl = Plylist()
-# pl.add_song(s1)
-# pl.add_song(s2)
-
-# print("Total Duration:", pl.total_duration())
-# pl.remove_song("Shape of You")
-# print("Total Duration after removal:", pl.total_duration())
+#     def give_raise(self, id, amuont):
+#         for emp in self.emps:
+#             if emp.id == id:
+#                 if isinstance(emp, HourlyEmployee):
+#                     HourlyEmployee.PAY_HOUR += amuont
+#                 else:
+#                     emp.monthly_pay += amuont
+#         return "Employee not found."
 
 
-# qustion 1
-class Employee(ABC):
+# c = Company()
+# e1 = HourlyEmployee("Ali", 40, "cleaner", 1)
+# print(e1.name)
+# print(e1.calc_salary())
+# e2 = Manager("Sara", "IT", 30, 2, 2000, "develop", 200)
 
-    @abstractmethod
-    def calc_salary(self):
-        pass
+# print(c.hire_emp(e1))
+# print(c.hire_emp(e2))
 
-
-class HourlyEmployee(Employee):
-    PAY_HOUR = 8
-
-    def __init__(self, name, hours, role, hourly_id):
-
-        self.name = name
-        self.hours = hours
-        self.role = role
-        self.id = hourly_id
-
-    def calc_salary(self):
-        return self.hours * self.PAY_HOUR
-
-
-class SalariedEmployee(Employee):
-
-    MONTH_DAY = 30
-
-    def __init__(self, name, role, days, emp_id, monthly_pay):
-        self.name = name
-        self.role = role
-        self.days = days
-        self.id = emp_id
-        self.monthly_pay = monthly_pay
-
-    def calc_salary(self):
-        return (self.monthly_pay / self.MONTH_DAY) * self.days
-
-
-class Manager(SalariedEmployee):
-    def __init__(self, name, role, days, emp_id, monthly_pay, section, commission):
-        self.commission = commission
-        self.section = section
-
-        super().__init__(name, role, days, emp_id, monthly_pay)
-
-    def calc_salary(self):
-        each_day = self.monthly_pay / self.MONTH_DAY
-        monthly = each_day * self.days
-        return monthly + self.commission
-
-
-class Executive(SalariedEmployee):
-    def __init__(
-        self,
-        name,
-        role,
-        days,
-        emp_id,
-        monthly_pay,
-        department,
-    ):
-        self.department = department
-        super().__init__(name, role, days, emp_id, monthly_pay)
-
-
-class Company:
-    def __init__(self):
-        self.emps = []
-
-    def hire_emp(self, emp):
-        self.emps.append(emp)
-        return f"u just hired {emp.name}"
-
-    def fire_emp(self, id):
-        for emp in self.emps:
-            if emp.id == id:
-                self.emps.remove(emp)
-
-    def give_raise(self, id, amuont):
-        for emp in self.emps:
-            if emp.id == id:
-                if isinstance(emp, HourlyEmployee):
-                    HourlyEmployee.PAY_HOUR += amuont
-                else:
-                    emp.monthly_pay += amuont
-        return "Employee not found."
-
-
-c = Company()
-e1 = HourlyEmployee("Ali", 40, "cleaner", 1)
-e2 = Manager("Sara", "IT", 30, 2, 2000, "develop", 200)
-
-print(c.hire_emp(e1))
-print(c.hire_emp(e2))
-
-print("Ali's Salary:", e1.calc_salary())
-print("Sara's Salary:", e2.calc_salary())
-print(c.give_raise(1, 2))
-print("Ali's New Salary:", e1.calc_salary())
+# print("Ali's Salary:", e1.calc_salary())
+# print("Sara's Salary:", e2.calc_salary())
+# print(c.give_raise(1, 2))
+# print("Ali's New Salary:", e1.calc_salary())
 
 
 # question 2
@@ -769,17 +771,17 @@ print("Ali's New Salary:", e1.calc_salary())
 # questiom 3
 
 
-def calc_circle_area(radius):
-    """
-    Calculate the area of a circle using the formula:
-        circumference = 2 * π * radius
+# def calc_circle_area(radius):
+#  """
+#     Calculate the area of a circle using the formula:
+#         circumference = 2 * π * radius
 
-    Args:
-        radius:  radius of the circle.
+#     Args:
+#         radius:  radius of the circle.
 
-    Returns:
-        float:  area of the circle.
-    """
+#     Returns:
+#         float:  area of the circle.
+#     """
     # return 2 * 3.14 * radius
 
 
@@ -833,3 +835,10 @@ def calc_circle_area(radius):
 #     cleaned = clean_lines(raw_lines)
 #     numbers = parse_numbers(cleaned)
 #     print(len(numbers))
+
+# def process_data(filename):
+#     with open(filename) as f:
+#         lines = f.readlines()
+#     cleaned = [line.strip() for line in lines]
+#     data = [int(x) for x in cleaned if x.isdigit()]
+#     print("Processed", len(data), "items")
