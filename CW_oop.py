@@ -755,3 +755,25 @@ from abc import ABC, abstractmethod
 
 
 # question 2
+
+class Logger:
+    def __init__(self,filename):
+        self.filename = filename
+        self.file = open(self.filename,"a") 
+        print(f"opened {self.filename}")
+
+    def write(self,massage):
+        self.file.write(massage + "\n")
+
+    def __del__(self):
+        self.file.close()
+        print(f"{self.filename} is closed")
+
+logger = Logger("log.txt")
+logger.write("hello world")
+logger.write("Something")
+
+
+del logger
+    
+        
