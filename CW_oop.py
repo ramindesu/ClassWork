@@ -644,113 +644,103 @@ from abc import ABC, abstractmethod
 
 
 # qustion 1
-# class Employee(ABC):
+class Employee(ABC):
 
-#     @abstractmethod
-#     def calc_salary(self):
-#         pass
-
-
-# class HourlyEmployee(Employee):
-#     PAY_HOUR = 8
-
-#     def __init__(self, name, hours, role,id):
-
-#         self.name = name
-#         self.hours = hours
-#         self.role = role
-#         self.id = id
-
-#     def calc_salary(self):
-#         return self.hours * self.PAY_HOUR
+    @abstractmethod
+    def calc_salary(self):
+        pass
 
 
-# class SalariedEmployee(Employee):
-#     MONTHLY_PAY = 2000
-#     MONTH_DAY = 30
+class HourlyEmployee(Employee):
+    PAY_HOUR = 8
 
-#     def __init__(self, name, role, days,id):
-#         self.name = name
-#         self.role = role
-#         self.days = days
-#         self.id = id
+    def __init__(self, name, hours, role, hourly_id):
 
-#     def calc_salary(self):
-#         return(self.MONTHLY_PAY / self.MONTH_DAY) * self.days
+        self.name = name
+        self.hours = hours
+        self.role = role
+        self.id = hourly_id
 
-
-# class Manager(Employee):
-#     MONTHLY_PAY = 2000
-#     MONTH_DAY = 30
-
-#     def __init__(self, name, depratmetn, commission,id,days):
-#         self.name = name
-#         self.department = depratmetn
-#         self.commission = commission
-#         self.id = id
-#         self.days = days
-
-#     def calc_salary(self):
-#         each_day = self.MONTHLY_PAY / self.MONTH_DAY
-#         monthly = each_day * self.days
-#         return monthly + self.commission
+    def calc_salary(self):
+        return self.hours * self.PAY_HOUR
 
 
-# class Executive(Employee):
-#     MONTHLY_PAY = 5000
-#     MONTH_DAY = 30
-#     def __init__(self, name, department, section,id,days):
-#         self.name = name
-#         self.department = department
-#         self.section = section
-#         self.id = id
-#         self.days =days
+class SalariedEmployee(Employee):
 
-#     def calc_salary(self):
-#         return (self.MONTHLY_PAY / self.MONTH_DAY) * self.days
+    MONTH_DAY = 30
 
-# class Company:
-#     def __init__(self):
-#         self.emps = []
+    def __init__(self, name, role, days, emp_id, monthly_pay):
+        self.name = name
+        self.role = role
+        self.days = days
+        self.id = emp_id
+        self.monthly_pay = monthly_pay
 
-#     def hire_emp(self,emp):
-#         self.emps.append(emp)
-#         return f"u just hired {emp.name}"
+    def calc_salary(self):
+        return (self.monthly_pay / self.MONTH_DAY) * self.days
 
 
-#     def fire_emp(self,id):
-#         for emp in self.emps:
-#             if emp.id == id:
-#                 self.emps.remove(emp)
+class Manager(SalariedEmployee):
+    def __init__(self, name, role, days, emp_id, monthly_pay, section, commission):
+        self.commission = commission
+        self.section = section
 
-#     def give_raise(self,id,ampunt):
-#         for emp in self.emps:
-#             if emp.id == id:
-#                 if isinstance(emp,HourlyEmployee):
-#                     HourlyEmployee.PAY_HOUR += ampunt
-#                 elif isinstance(emp, SalariedEmployee):
-#                     SalariedEmployee.MONTHLY_PAY +=ampunt
-#                     return f" Monthly salary increased to {SalariedEmployee.MONTHLY_PAY}"
-#                 elif isinstance(emp, Manager):
-#                     Manager.MONTHLY_PAY += ampunt
-#                     return f" Manager salary increased to {Manager.MONTHLY_PAY}"
-#                 elif isinstance(emp, Executive):
-#                     Executive.MONTHLY_PAY += ampunt
-#                     return f" Executive salary increased to {Executive.MONTHLY_PAY}"
-#         return "Employee not found."
+        super().__init__(name, role, days, emp_id, monthly_pay)
+
+    def calc_salary(self):
+        each_day = self.monthly_pay / self.MONTH_DAY
+        monthly = each_day * self.days
+        return monthly + self.commission
 
 
-# c = Company()
-# e1 = HourlyEmployee("Ali", 40, "cleaner", 1)
-# e2 = Manager("Sara", "IT", 500, 2, 20)
+class Executive(SalariedEmployee):
+    def __init__(
+        self,
+        name,
+        role,
+        days,
+        emp_id,
+        monthly_pay,
+        department,
+    ):
+        self.department = department
+        super().__init__(name, role, days, emp_id, monthly_pay)
 
-# print(c.hire_emp(e1))
-# print(c.hire_emp(e2))
 
-# print("Ali's Salary:", e1.calc_salary())
-# print("Sara's Salary:", e2.calc_salary())
-# print(c.give_raise(1, 2))
-# print("Ali's New Salary:", e1.calc_salary())
+class Company:
+    def __init__(self):
+        self.emps = []
+
+    def hire_emp(self, emp):
+        self.emps.append(emp)
+        return f"u just hired {emp.name}"
+
+    def fire_emp(self, id):
+        for emp in self.emps:
+            if emp.id == id:
+                self.emps.remove(emp)
+
+    def give_raise(self, id, amuont):
+        for emp in self.emps:
+            if emp.id == id:
+                if isinstance(emp, HourlyEmployee):
+                    HourlyEmployee.PAY_HOUR += amuont
+                else:
+                    emp.monthly_pay += amuont
+        return "Employee not found."
+
+
+c = Company()
+e1 = HourlyEmployee("Ali", 40, "cleaner", 1)
+e2 = Manager("Sara", "IT", 30, 2, 2000, "develop", 200)
+
+print(c.hire_emp(e1))
+print(c.hire_emp(e2))
+
+print("Ali's Salary:", e1.calc_salary())
+print("Sara's Salary:", e2.calc_salary())
+print(c.give_raise(1, 2))
+print("Ali's New Salary:", e1.calc_salary())
 
 
 # question 2
