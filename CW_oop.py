@@ -1,3 +1,5 @@
+import os
+os.system("clear")
 # # question number 1
 
 
@@ -844,38 +846,86 @@ from abc import ABC, abstractmethod
 #     print("Processed", len(data), "items")
 
 
-def role_requires(role):
-    def role_dec(func):
-        def wrapper(self):
-            if self.role == role:
-                return func(self)
-            else:
-                raise PermissionError("u dont have the accses")
-        return wrapper
-    return role_dec
+
+
+# question 1
+
+# def role_requires(role):
+#     def role_dec(func):
+#         def wrapper(self):
+#             if self.role == role:
+#                 return func(self)
+#             else:
+#                 raise PermissionError("u dont have the accses")
+#         return wrapper
+#     return role_dec
 
 
 
-class User:
-    def __init__(self,name,role):
-        self.name = name
-        self.role = role
+# class User:
+#     def __init__(self,name,role):
+#         self.name = name
+#         self.role = role
 
-    def view_profile(self):
-        return "veiwing profile"
+#     def view_profile(self):
+#         return "veiwing profile"
     
-    def edit_profile(self):
-        return "editing profile"
+#     def edit_profile(self):
+#         return "editing profile"
     
-    @role_requires("admin")
-    def delete_account(self):
-        return "deleting acount"
+#     @role_requires("admin")
+#     def delete_account(self):
+#         return "deleting acount"
         
-admin = User("ramin", "admin")
-guest = User("guest", "viewer")
-try:
-    print(admin.delete_account())  
+# admin = User("ramin", "admin")
+# guest = User("guest", "viewer")
+# try:
+#     print(admin.delete_account())  
 
-    print(guest.delete_account())  
-except Exception as e:
-    print (e)
+#     print(guest.delete_account())  
+# except Exception as e:
+#     print (e)
+
+# question 2
+
+# def positive_dec(func):
+#     def wrapper(self, user, category, score):
+#         if score <= 0:
+#             raise ValueError("Score must be greater than zero.")
+#         return func(self, user, category, score)
+#     return wrapper
+
+
+# class ScoreSystem:
+#     def __init__(self):
+#         self.scores = {}
+
+#     @positive_dec
+#     def add_score(self, user, category, score):
+#         if user not in self.scores:
+#             self.scores[user] = {}
+
+#         if category not in self.scores[user]:
+#             self.scores[user][category] = 0
+
+#         self.scores[user][category] += score
+
+#     def show_all(self):
+#         for user, categories in self.scores.items():
+#             print(f"{user}:")
+#             for category, score in categories.items():
+#                 print(f"  {category}: {score}")
+
+
+
+# system = ScoreSystem()
+# try:
+#     system.add_score("ramin", "games", 50)
+#     system.add_score("ramin", "articles", 20)
+#     system.add_score("sara", "projects", 30)
+#     system.add_score("ramin", "games", 25)
+#     system.add_score("sara", "games", -10)
+# except Exception as e:
+#     print(e)
+# system.show_all()
+
