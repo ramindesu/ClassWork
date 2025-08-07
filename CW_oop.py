@@ -1,4 +1,5 @@
 import os
+
 os.system("clear")
 # # question number 1
 
@@ -846,8 +847,6 @@ from abc import ABC, abstractmethod
 #     print("Processed", len(data), "items")
 
 
-
-
 # question 1
 
 # def role_requires(role):
@@ -861,7 +860,6 @@ from abc import ABC, abstractmethod
 #     return role_dec
 
 
-
 # class User:
 #     def __init__(self,name,role):
 #         self.name = name
@@ -869,20 +867,20 @@ from abc import ABC, abstractmethod
 
 #     def view_profile(self):
 #         return "veiwing profile"
-    
+
 #     def edit_profile(self):
 #         return "editing profile"
-    
+
 #     @role_requires("admin")
 #     def delete_account(self):
 #         return "deleting acount"
-        
+
 # admin = User("ramin", "admin")
 # guest = User("guest", "viewer")
 # try:
-#     print(admin.delete_account())  
+#     print(admin.delete_account())
 
-#     print(guest.delete_account())  
+#     print(guest.delete_account())
 # except Exception as e:
 #     print (e)
 
@@ -917,7 +915,6 @@ from abc import ABC, abstractmethod
 #                 print(f"  {category}: {score}")
 
 
-
 # system = ScoreSystem()
 # try:
 #     system.add_score("ramin", "games", 50)
@@ -929,3 +926,21 @@ from abc import ABC, abstractmethod
 #     print(e)
 # system.show_all()
 
+# question number 3
+
+
+def generator_custom():
+    num = 1
+    while True:
+        digit_sum = sum(int(d) for d in str(num))
+        if digit_sum % 2 == 1:
+            yield num
+        num += 1
+
+
+filtered_iter = filter(lambda x: x % 5 == 0, generator_custom())
+first_five = []
+for i in range(5):
+    first_five.append(next(filtered_iter))
+
+print(first_five)
