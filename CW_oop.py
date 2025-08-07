@@ -305,25 +305,25 @@ class Author:
 
 
 # question number 3
-class Score:
-    def __init__(self, value):
-        if isinstance(value, int):
-            self.value = value
-        else:
-            raise TypeError
+# class Score:
+#     def __init__(self, value):
+#         if isinstance(value, int):
+#             self.value = value
+#         else:
+#             raise TypeError
 
-    def show_value(self):
-        return self.value
+#     def show_value(self):
+#         return self.value
 
-    def __add__(self, other):
-        if isinstance(other, Score):
-            return Score(self.value + other.value)
-        return "not found"
+#     def __add__(self, other):
+#         if isinstance(other, Score):
+#             return Score(self.value + other.value)
+#         return "not found"
 
-    def __sub__(self, other):
-        if isinstance(other, Score):
-            return Score(self.value - other.value)
-        return "not found"
+#     def __sub__(self, other):
+#         if isinstance(other, Score):
+#             return Score(self.value - other.value)
+#         return "not found"
 
 
 # s1 = Score(23)
@@ -782,7 +782,7 @@ from abc import ABC, abstractmethod
 #     Returns:
 #         float:  area of the circle.
 #     """
-    # return 2 * 3.14 * radius
+# return 2 * 3.14 * radius
 
 
 # class ReportGenerator:
@@ -842,3 +842,6 @@ from abc import ABC, abstractmethod
 #     cleaned = [line.strip() for line in lines]
 #     data = [int(x) for x in cleaned if x.isdigit()]
 #     print("Processed", len(data), "items")
+
+
+
