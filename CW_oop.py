@@ -929,18 +929,119 @@ from abc import ABC, abstractmethod
 # question number 3
 
 
-def generator_custom():
-    num = 1
-    while True:
-        digit_sum = sum(int(d) for d in str(num))
-        if digit_sum % 2 == 1:
-            yield num
-        num += 1
+# def generator_custom():
+#     num = 1
+#     while True:
+#         digit_sum = sum(int(d) for d in str(num))
+#         if digit_sum % 2 == 1:
+#             yield num
+#         num += 1
 
 
-filtered_iter = filter(lambda x: x % 5 == 0, generator_custom())
-first_five = []
-for i in range(5):
-    first_five.append(next(filtered_iter))
+# filtered_iter = filter(lambda x: x % 5 == 0, generator_custom())
+# first_five = []
+# for i in range(5):
+#     first_five.append(next(filtered_iter))
 
-print(first_five)
+# print(first_five)
+
+
+# question 4
+from abc import ABC
+
+class Person(ABC):
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+
+class Book:
+    def __init__(self, title, book_id, category, writer, price, page):
+        self.title = title
+        self.book_id = book_id
+        self.category = category
+        self.writer = writer
+        self.__price = price
+        self.page = page
+
+    def __repr__(self):
+        return f"Book({self.title}, {self.book_id})"
+
+
+class Shelf:
+    def __init__(self, shelf_id):
+        self.books = []
+        self.shelf_id = shelf_id
+
+    def add_book(self, book):
+        limit_page = sum(b.page for b in self.books)
+        if limit_page + book.page <= 10000:
+            self.books.append(book)
+        else:
+            return "The shelf is full"
+
+    def get_books(self):
+        return self.books
+
+
+class Repository:
+    def __init__(self):
+        self.shelves = []
+
+    def add_shelf(self, shelf):
+        self.shelves.append(shelf)
+
+    def get_all_books(self):
+        books = []
+        for shelf in self.shelves:
+            books.extend(shelf.get_books())
+        return books
+
+
+class Library:
+    def __init__(self):
+        self.repository = Repository()
+
+
+class Librarian(Person):
+    def __init__(self, name, age, library):
+        super().__init__(name, age)
+        self.library = library
+
+    def list_all_books(self):
+        return self.library.repository.get_all_books()
+
+    def search_by_title(self, title):
+        books = self.library.repository.get_all_books()
+        found = [book for book in books if book.title.lower() == title.lower()]
+        return found if found else "Book not found"
+    
+
+
+
+library = Library()
+shelf1 = Shelf("A1")
+shelf2 = Shelf("B1")
+
+
+library.repository.add_shelf(shelf1)
+library.repository.add_shelf(shelf2)
+
+
+book1 = Book("Python 101", 1, "Programming", "John Doe", 50, 300)
+book2 = Book("python 103", 2, "Programming", "Jane Smith", 45, 250)
+book3 = Book("Python 102", 3, "Programming", "Another Writer", 60, 280)
+
+
+shelf1.add_book(book1)
+shelf1.add_book(book2)
+shelf2.add_book(book3)
+
+
+librarian = Librarian("Ali", 30, library)
+
+
+print(librarian.list_all_books())
+
+
+print(librarian.search_by_title("python 101"))
