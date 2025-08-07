@@ -149,149 +149,149 @@
 # tem1 = Thermometer(cel=23)
 # print(tem1.to_far())
 # question number 8
-class Employee:
-    employee_counter = []
+# class Employee:
+#     employee_counter = []
 
-    def __init__(self, name, age, salary):
-        Employee.employee_counter.append(self)
-        self.name = name
-        self.age = age
-        self.salary = salary
-        self.all_salary = []
+#     def __init__(self, name, age, salary):
+#         Employee.employee_counter.append(self)
+#         self.name = name
+#         self.age = age
+#         self.salary = salary
+#         self.all_salary = []
 
-    def decribe(self):
-        return f"this employee {self.name} age: {self.age} with salary {self.salary}"
+#     def decribe(self):
+#         return f"this employee {self.name} age: {self.age} with salary {self.salary}"
 
-    def give_raise(self, add):
-        self.salary += add
-        return f"{add} just added to the salary new salary is {self.salary}"
+#     def give_raise(self, add):
+#         self.salary += add
+#         return f"{add} just added to the salary new salary is {self.salary}"
 
-    def validate_salary(self):
-        return f"this person{self.name} got his salary{self.salary}"
+#     def validate_salary(self):
+#         return f"this person{self.name} got his salary{self.salary}"
 
-    @classmethod
-    def give_raise_to_all(cls, add):
-        for employee in cls.employee_counter:
-            employee.salary += add
-        return "all employees got a raise"
+#     @classmethod
+#     def give_raise_to_all(cls, add):
+#         for employee in cls.employee_counter:
+#             employee.salary += add
+#         return "all employees got a raise"
 
-    @classmethod
-    def avg_salary(cls):
-        total = sum(employee.salary for employee in cls.employee_counter)
-        return total / len(cls.employee_counter)
+#     @classmethod
+#     def avg_salary(cls):
+#         total = sum(employee.salary for employee in cls.employee_counter)
+#         return total / len(cls.employee_counter)
 
-    @classmethod
-    def validate_name(cls, name):
-        for employee in cls.employee_counter:
-            if employee.name == name:
-                return True
-        return False
-
-
-# question 9:
-class Class:
-    class_series = 10
-
-    def __init__(self, name, master, studens):
-        self.name_class = name
-        self.master = master
-        self.students = studens
-        Class.class_series += 10
-        self.class_id = Class.class_series
-
-    def avg_grades(self):
-        total = sum(student.grade for student in self.student)
-        return total // len(self.students)
-
-    def qty_of_students(self):
-        return len(self.students)
-
-    def top_five(
-        self,
-    ):
-        pass
+#     @classmethod
+#     def validate_name(cls, name):
+#         for employee in cls.employee_counter:
+#             if employee.name == name:
+#                 return True
+#         return False
 
 
-class Human:
-    def __init__(self, name_lname, number, age, email):
-        self.name = name_lname
-        self.number = number
-        self.age = age
-        self.mail = email
+# # question 9:
+# class Class:
+#     class_series = 10
+
+#     def __init__(self, name, master, studens):
+#         self.name_class = name
+#         self.master = master
+#         self.students = studens
+#         Class.class_series += 10
+#         self.class_id = Class.class_series
+
+#     def avg_grades(self):
+#         total = sum(student.grade for student in self.student)
+#         return total // len(self.students)
+
+#     def qty_of_students(self):
+#         return len(self.students)
+
+#     def top_five(
+#         self,
+#     ):
+#         pass
 
 
-class Master(Human):
-    master_id = 0
-
-    def __init__(self, name_lname, number, age, email):
-        Master.master_id += 10
-        self.master_id = Master.master_id
-        super().__init__(name_lname, number, age, email)
-
-
-class student(Human):
-    student_id = 0
-
-    def __init__(self, name_lname, number, age, email, grade):
-        self.grade = grade
-        super().__init__(name_lname, number, age, email)
+# class Human:
+#     def __init__(self, name_lname, number, age, email):
+#         self.name = name_lname
+#         self.number = number
+#         self.age = age
+#         self.mail = email
 
 
-# question 1
-class User:
-    def __init__(self, password):
+# class Master(Human):
+#     master_id = 0
 
-        self.__password = None
-        self.change_pass = password
-
-    @property
-    def change_pass(self):
-        return self.__password
-
-    @change_pass.setter
-    def change_pass(self, value):
-        if isinstance(value, str) and len(str(value)) > 8:
-            self.__password = value
-        else:
-            raise ValueError(
-                "the pass word must be more than 8 character and must be string"
-            )
+#     def __init__(self, name_lname, number, age, email):
+#         Master.master_id += 10
+#         self.master_id = Master.master_id
+#         super().__init__(name_lname, number, age, email)
 
 
-# questin number 2
-class Book:
-    def __init__(self, title, id, price, writers):
-        self.title = title
-        self.id = id
-        self.price = price
-        self.writers = writers
+# class student(Human):
+#     student_id = 0
 
-    def show_info(self):
-        return f"{self.title} - ID: {self.id}, Price: {self.price}"
+#     def __init__(self, name_lname, number, age, email, grade):
+#         self.grade = grade
+#         super().__init__(name_lname, number, age, email)
 
 
-class PrintedBook(Book):
-    def __init__(self, title, id, price, page, writers):
-        self.page = page
-        super().__init__(title, id, price, writers)
+# # question 1
+# class User:
+#     def __init__(self, password):
 
-    def show_info(self):
-        return f"{self.title} (Printed), ID: {self.id}, Price: {self.price}, Pages: {self.page}"
+#         self.__password = None
+#         self.change_pass = password
+
+#     @property
+#     def change_pass(self):
+#         return self.__password
+
+#     @change_pass.setter
+#     def change_pass(self, value):
+#         if isinstance(value, str) and len(str(value)) > 8:
+#             self.__password = value
+#         else:
+#             raise ValueError(
+#                 "the pass word must be more than 8 character and must be string"
+#             )
 
 
-class ElectronicBook(Book):
-    def __init__(self, title, id, price, file_size, writers):
-        self.file_size = file_size
-        super().__init__(title, id, price, writers)
+# # questin number 2
+# class Book:
+#     def __init__(self, title, id, price, writers):
+#         self.title = title
+#         self.id = id
+#         self.price = price
+#         self.writers = writers
 
-    def show_info(self):
-        return f"{self.title} (E-Book), ID: {self.id}, Price: {self.price}, File Size: {self.file_size}MB"
+#     def show_info(self):
+#         return f"{self.title} - ID: {self.id}, Price: {self.price}"
 
 
-class Author:
-    def __init__(self, name, email):
-        self.name = name
-        self.email = email
+# class PrintedBook(Book):
+#     def __init__(self, title, id, price, page, writers):
+#         self.page = page
+#         super().__init__(title, id, price, writers)
+
+#     def show_info(self):
+#         return f"{self.title} (Printed), ID: {self.id}, Price: {self.price}, Pages: {self.page}"
+
+
+# class ElectronicBook(Book):
+#     def __init__(self, title, id, price, file_size, writers):
+#         self.file_size = file_size
+#         super().__init__(title, id, price, writers)
+
+#     def show_info(self):
+#         return f"{self.title} (E-Book), ID: {self.id}, Price: {self.price}, File Size: {self.file_size}MB"
+
+
+# class Author:
+#     def __init__(self, name, email):
+#         self.name = name
+#         self.email = email
 
 
 # a1 = Author("Ramin", "ramin@example.com")
@@ -844,4 +844,38 @@ from abc import ABC, abstractmethod
 #     print("Processed", len(data), "items")
 
 
+def role_requires(role):
+    def role_dec(func):
+        def wrapper(self):
+            if self.role == role:
+                return func(self)
+            else:
+                raise PermissionError("u dont have the accses")
+        return wrapper
+    return role_dec
 
+
+
+class User:
+    def __init__(self,name,role):
+        self.name = name
+        self.role = role
+
+    def view_profile(self):
+        return "veiwing profile"
+    
+    def edit_profile(self):
+        return "editing profile"
+    
+    @role_requires("admin")
+    def delete_account(self):
+        return "deleting acount"
+        
+admin = User("ramin", "admin")
+guest = User("guest", "viewer")
+try:
+    print(admin.delete_account())  
+
+    print(guest.delete_account())  
+except Exception as e:
+    print (e)
