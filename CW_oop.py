@@ -1198,3 +1198,24 @@ from abc import ABC, abstractmethod
 
 # print(lib.remove_book("Python Basics"))
 # print(lib.show_books())
+
+
+
+# question 4
+
+
+# class WordAnalyzer:
+#     def __init__(self,words):
+#         self._words = set(list(words))
+
+
+#     def unniqe_letter_count(self):
+#         return {word : len(word) for word in self._words}
+    
+#     @property
+#     def words(self):
+#         return self._words
+    
+# wa = WordAnalyzer(["apple", "banana", "apple", "cherry"])
+# print("Words:", wa.words)
+# print("Letter counts:", wa.unniqe_letter_count())
