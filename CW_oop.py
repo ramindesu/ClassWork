@@ -1095,39 +1095,106 @@ from abc import ABC, abstractmethod
 
 # question2
 
-class Classroom:
-    def __init__(self):
-        self._grades = {}
+# class Classroom:
+#     def __init__(self):
+#         self._grades = {}
 
-    def add_grade(self,score,subject,student):
-        if student not in self._grades:
-            self._grades[student] = {}
+#     def add_grade(self,score,subject,student):
+#         if student not in self._grades:
+#             self._grades[student] = {}
 
-        self._grades[student][subject] = score
+#         self._grades[student][subject] = score
 
-    def avg(self,student):
-        if student not in self._grades:
-            return -1
+#     def avg(self,student):
+#         if student not in self._grades:
+#             return -1
         
-        scores = list(self._grades[student].values())
-        valid_Score = list(filter(lambda x : x >= 0, scores))
-        average = sum(valid_Score) / len(valid_Score)
-        return f" avr is : {average}"
+#         scores = list(self._grades[student].values())
+#         valid_Score = list(filter(lambda x : x >= 0, scores))
+#         average = sum(valid_Score) / len(valid_Score)
+#         return f" avr is : {average}"
     
-    def __str__(self):
-        result = []
-        for student, subjects in self._grades.items():
-            result.append(f"Student: {student}")
-            for subject, grade in subjects.items():
-                result.append(f"  {subject}: {grade}")
-        return "\n".join(result)
+#     def __str__(self):
+#         result = []
+#         for student, subjects in self._grades.items():
+#             result.append(f"Student: {student}")
+#             for subject, grade in subjects.items():
+#                 result.append(f"  {subject}: {grade}")
+#         return "\n".join(result)
 
 
 
-c = Classroom()
-c.add_grade(18, "Math", "Ali")
-c.add_grade(15, "Physics", "Ali")
-c.add_grade(20, "Math", "Sara")
-print(c.avg("Ali"))  
-print(c)
+# c = Classroom()
+# c.add_grade(18, "Math", "Ali")
+# c.add_grade(15, "Physics", "Ali")
+# c.add_grade(20, "Math", "Sara")
+# print(c.avg("Ali"))  
+# print(c)
 
+
+# question 3
+# from abc import ABC, abstractmethod
+
+# class LibraryBase(ABC):
+#     @abstractmethod
+#     def add_book(self, book, writer, page):
+#         pass
+
+#     @abstractmethod
+#     def remove_book(self, book):
+#         pass
+
+#     @abstractmethod
+#     def show_books(self, book=None):
+#         pass
+
+
+# class SummaryMixin:
+#     def summary(self):
+#         result = []
+#         for title, writers in self.books.items():
+#             result.append(f"Title: {title}")
+#             for writer, pages in writers.items():
+#                 result.append(f"  {writer} : {pages} pages")
+#         return "\n".join(result)
+
+
+# class LibrarySystem(LibraryBase, SummaryMixin):
+#     def __init__(self):
+#         self.books = {}
+
+#     def add_book(self, book, writer, page):
+#         if book in self.books:
+#             if writer in self.books[book]:
+#                 return "Book with this writer already exists"
+#             else:
+#                 self.books[book][writer] = page
+#                 return "Writer added to existing book"
+#         else:
+#             self.books[book] = {writer: page}
+#             return "Book added"
+
+#     def remove_book(self, book):
+#         if book in self.books:
+#             del self.books[book]
+#             return "Book deleted"
+#         return "Book not found"
+
+#     def show_books(self, book=None):
+#         if book:
+#             if book in self.books:
+#                 return {book: self.books[book]}
+#             else:
+#                 return "Book not found"
+#         return self.books
+    
+# lib = LibrarySystem()
+# print(lib.add_book("Python Basics", "Ali", 300))
+# print(lib.add_book("Python Basics", "Sara", 250))
+# print(lib.add_book("Data Science", "Reza", 400))
+
+# print(lib.show_books())
+# print(lib.summary())
+
+# print(lib.remove_book("Python Basics"))
+# print(lib.show_books())
