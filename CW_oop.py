@@ -1045,49 +1045,89 @@ from abc import ABC, abstractmethod
 
 
 
-# question_1
-class UserBatchProcessor:
-    def __init__(self, users):
-        self._users = list(users)
-        self._batch_size = 3
+# # question_1
+# class UserBatchProcessor:
+#     def __init__(self, users):
+#         self._users = list(users)
+#         self._batch_size = 3
 
-    @property
-    def users(self):
-        return self.users
+#     @property
+#     def users(self):
+#         return self.users
     
-    @users.setter
-    def users(self,person):
-        self._users.append(person)
+#     @users.setter
+#     def users(self,person):
+#         self._users.append(person)
 
 
-    @property
-    def batch_size(self):
-        return self._batch_size
+#     @property
+#     def batch_size(self):
+#         return self._batch_size
 
-    @batch_size.setter
-    def batch_size(self, value):
-        if value > 0:
-            self._batch_size = value
-        else:
-            raise ValueError("Batch size must be more than zero")
+#     @batch_size.setter
+#     def batch_size(self, value):
+#         if value > 0:
+#             self._batch_size = value
+#         else:
+#             raise ValueError("Batch size must be more than zero")
 
-    def get_batches(self):
-        for i in range(0, len(self.users), self.batch_size):
-            yield self.users[i:i + self.batch_size]
+#     def get_batches(self):
+#         for i in range(0, len(self.users), self.batch_size):
+#             yield self.users[i:i + self.batch_size]
 
-    def total_batches(self):
-        return (len(self.users) + self.batch_size - 1) // self.batch_size
+#     def total_batches(self):
+#         return (len(self.users) + self.batch_size - 1) // self.batch_size
 
-    def has_remain(self):
-        return len(self.users) > self.batch_size
+#     def has_remain(self):
+#         return len(self.users) > self.batch_size
 
-users = ["Ali", "Sara", "Reza", "Nima", "Mina", "Omid", "Lara"]
+# users = ["Ali", "Sara", "Reza", "Nima", "Mina", "Omid", "Lara"]
 
-processor = UserBatchProcessor(users)
-processor.batch_size = 4
+# processor = UserBatchProcessor(users)
+# processor.batch_size = 4
 
-print("Total batches:", processor.total_batches())
-print(processor.has_remain())
+# print("Total batches:", processor.total_batches())
+# print(processor.has_remain())
 
-for batch in processor.get_batches():
-    print("Batch:", batch)
+# for batch in processor.get_batches():
+#     print("Batch:", batch)
+
+
+# question2
+
+class Classroom:
+    def __init__(self):
+        self._grades = {}
+
+    def add_grade(self,score,subject,student):
+        if student not in self._grades:
+            self._grades[student] = {}
+
+        self._grades[student][subject] = score
+
+    def avg(self,student):
+        if student not in self._grades:
+            return -1
+        
+        scores = list(self._grades[student].values())
+        valid_Score = list(filter(lambda x : x >= 0, scores))
+        average = sum(valid_Score) / len(valid_Score)
+        return f" avr is : {average}"
+    
+    def __str__(self):
+        result = []
+        for student, subjects in self._grades.items():
+            result.append(f"Student: {student}")
+            for subject, grade in subjects.items():
+                result.append(f"  {subject}: {grade}")
+        return "\n".join(result)
+
+
+
+c = Classroom()
+c.add_grade(18, "Math", "Ali")
+c.add_grade(15, "Physics", "Ali")
+c.add_grade(20, "Math", "Sara")
+print(c.avg("Ali"))  
+print(c)
+
