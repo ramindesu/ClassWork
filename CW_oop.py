@@ -1219,3 +1219,22 @@ from abc import ABC, abstractmethod
 # wa = WordAnalyzer(["apple", "banana", "apple", "cherry"])
 # print("Words:", wa.words)
 # print("Letter counts:", wa.unniqe_letter_count())
+
+
+# question 5
+# class Add:
+#     def __init__(self,val = 0):
+#         self.total= val
+
+#     def __call__(self, val):
+#         self.total+= val
+#         return self
+    
+#     def __repr__(self):
+#         return str(self.total)
+        
+# a = Add(2)(3)
+# b = Add(2)(3)(4)
+
+# print(a) 
+# print(b) 
