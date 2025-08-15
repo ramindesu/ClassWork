@@ -1133,60 +1133,60 @@ from abc import ABC, abstractmethod
 
 
 # question 3
-# from abc import ABC, abstractmethod
+from abc import ABC, abstractmethod
 
-# class LibraryBase(ABC):
-#     @abstractmethod
-#     def add_book(self, book, writer, page):
-#         pass
+class LibraryBase(ABC):
+    @abstractmethod
+    def add_book(self, book, writer, page):
+        pass
 
-#     @abstractmethod
-#     def remove_book(self, book):
-#         pass
+    @abstractmethod
+    def remove_book(self, book):
+        pass
 
-#     @abstractmethod
-#     def show_books(self, book=None):
-#         pass
-
-
-# class SummaryMixin:
-#     def summary(self):
-#         result = []
-#         for title, writers in self.books.items():
-#             result.append(f"Title: {title}")
-#             for writer, pages in writers.items():
-#                 result.append(f"  {writer} : {pages} pages")
-#         return "\n".join(result)
+    @abstractmethod
+    def show_books(self, book=None):
+        pass
 
 
-# class LibrarySystem(LibraryBase, SummaryMixin):
-#     def __init__(self):
-#         self.books = {}
+class SummaryMixin:
+    def summary(self):
+        result = []
+        for title, writers in self.books.items():
+            result.append(f"Title: {title}")
+            for writer, pages in writers.items():
+                result.append(f"  {writer} : {pages} pages")
+        return "\n".join(result)
 
-#     def add_book(self, book, writer, page):
-#         if book in self.books:
-#             if writer in self.books[book]:
-#                 return "Book with this writer already exists"
-#             else:
-#                 self.books[book][writer] = page
-#                 return "Writer added to existing book"
-#         else:
-#             self.books[book] = {writer: page}
-#             return "Book added"
 
-#     def remove_book(self, book):
-#         if book in self.books:
-#             del self.books[book]
-#             return "Book deleted"
-#         return "Book not found"
+class LibrarySystem(LibraryBase, SummaryMixin):
+    def __init__(self):
+        self.books = {}
 
-#     def show_books(self, book=None):
-#         if book:
-#             if book in self.books:
-#                 return {book: self.books[book]}
-#             else:
-#                 return "Book not found"
-#         return self.books
+    def add_book(self, book, writer, page):
+        if book in self.books:
+            if writer in self.books[book]:
+                return "Book with this writer already exists"
+            else:
+                self.books[book][writer] = page
+                return "Writer added to existing book"
+        else:
+            self.books[book] = {writer: page}
+            return "Book added"
+
+    def remove_book(self, book):
+        if book in self.books:
+            del self.books[book]
+            return "Book deleted"
+        return "Book not found"
+
+    def show_books(self, book=None):
+        if book:
+            if book in self.books:
+                return {book: self.books[book]}
+            else:
+                return "Book not found"
+        return self.books
     
 # lib = LibrarySystem()
 # print(lib.add_book("Python Basics", "Ali", 300))
@@ -1238,3 +1238,133 @@ from abc import ABC, abstractmethod
 
 # print(a) 
 # print(b) 
+
+# question 6
+# class Singleton:
+#     _instance = None  
+
+#     def __new__(cls, *args, **kwargs):
+#         if cls._instance is None:
+#             cls._instance = super().__new__(cls)
+#         return cls._instance
+
+#     def __init__(self, value):
+      
+#         if not hasattr(self, 'initialized'):
+#             self.value = value
+#             self.initialized = True
+
+
+# s1 = Singleton("First Instance")
+# s2 = Singleton("Second Instance")
+
+# print(s1 is s2) 
+# print(s1.value)  
+# print(s2.value)  
+
+
+
+# question_1
+
+from abc import ABC, abstractmethod
+
+class Bodypart(ABC):
+    @abstractmethod
+    def active(self):
+        pass
+
+class Lung(Bodypart):
+    def __init__(self, name, health):
+        self.name = name
+        self.health = health
+    def active(self):
+        return f"{self.name}: human is currently breathing"
+    def breath_faster(self, run=False):
+        return "we are running" if run else "no need to breath faster"
+
+class Heart(Bodypart):
+    def __init__(self, name, pumps_per_min):
+        self.name = name
+        self.pumps = pumps_per_min
+    def active(self):
+        return f"{self.name}: pumping the blood"
+    def pump_faster(self, stress=False):
+        return "we having stress" if stress else "no need"
+
+class Leg(Bodypart):
+    def __init__(self, name, muscle_mass):
+        self.name = name
+        self.muscle_mass = muscle_mass
+    def active(self):
+        return f"{self.name}: walking"
+    def sprinting(self):
+        return "im running like horse"
+
+class HumanBody:
+    def __init__(self):
+        self.bodyparts = []
+    def add_bodypart(self, part: Bodypart):
+        self.bodyparts.append(part)
+        return "added successfully"
+    def all_active(self):
+        return [part.active() for part in self.bodyparts]
+    def remove_bodyPart(self, part: Bodypart):
+        if part in self.bodyparts:
+            self.bodyparts.remove(part)
+        else:
+            return "no such body exist"
+
+def welcoming():
+    print("welcome to our company")
+    print("would you like to create some human :)")
+
+def creat_heart(name, heart_beat):
+    return Heart(name, heart_beat)
+
+def creat_lung(name, health):
+    return Lung(name, health)
+
+def creat_leg(name, ms):
+    return Leg(name, ms)
+
+def creat_body():
+    welcoming()
+    choice = int(input("creating: 1_heart | 2_lung | 3_leg: "))
+    if choice == 1:
+        name = input("choose name for the heart: ")
+        beat = int(input("choose a num for the heart_beat: "))
+        return creat_heart(name, beat)
+    elif choice == 2:
+        name = input("choose name for the lung: ")
+        health = int(input("choose a num for the health: "))
+        return creat_lung(name, health)
+    elif choice == 3:
+        name = input("choose name for the leg: ")
+        ms = int(input("choose a num for the muscle mass: "))
+        return creat_leg(name, ms)
+
+def creat_human():
+    human = HumanBody()
+    print("now you made your body parts, so let's make your meta human")
+    while True:
+        print("create a body part or type 10 to finish")
+        choice = input()
+        if choice == "10":
+            break
+        part = creat_body()
+        if isinstance(part, Bodypart):
+            human.add_bodypart(part)
+    return human
+
+lung = Lung("Lung A", 90)
+heart = Heart("Heart A", 72)
+leg = Leg("Leg A", 50)
+
+human = HumanBody()
+human.add_bodypart(lung)
+human.add_bodypart(heart)
+human.add_bodypart(leg)
+
+print(human.all_active())
+human.remove_bodyPart(heart)
+print(human.all_active())
