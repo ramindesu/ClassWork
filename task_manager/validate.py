@@ -6,6 +6,10 @@ class ValidationError(Exception):
     pass
 
 
+class NotFound(Exception):
+    pass
+
+
 username_validate = re.compile(r"^[a-zA-Z0-9]{3,20}$")
 password_validate = re.compile(
     r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$"
