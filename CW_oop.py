@@ -1232,6 +1232,12 @@ class LibrarySystem(LibraryBase, SummaryMixin):
     
 #     def __repr__(self):
 #         return str(self.total)
+
+# Add(1)
+# Add(2)
+# Add(3)
+
+# print(Add())
         
 # a = Add(2)(3)
 # b = Add(2)(3)(4)
@@ -1239,20 +1245,18 @@ class LibrarySystem(LibraryBase, SummaryMixin):
 # print(a) 
 # print(b) 
 
-# question 6
+# # question 6
 # class Singleton:
 #     _instance = None  
 
 #     def __new__(cls, *args, **kwargs):
 #         if cls._instance is None:
-#             cls._instance = super().__new__(cls)
+#             raise Exception("just one")
+#         cls._instance = super().__new__(cls)
 #         return cls._instance
 
 #     def __init__(self, value):
-      
-#         if not hasattr(self, 'initialized'):
-#             self.value = value
-#             self.initialized = True
+#         self.value = value
 
 
 # s1 = Singleton("First Instance")
@@ -1266,105 +1270,106 @@ class LibrarySystem(LibraryBase, SummaryMixin):
 
 # question_1
 
-from abc import ABC, abstractmethod
+# from abc import ABC, abstractmethod
 
-class Bodypart(ABC):
-    @abstractmethod
-    def active(self):
-        pass
+# class Bodypart(ABC):
+#     @abstractmethod
+#     def active(self):
+#         pass
 
-class Lung(Bodypart):
-    def __init__(self, name, health):
-        self.name = name
-        self.health = health
-    def active(self):
-        return f"{self.name}: human is currently breathing"
-    def breath_faster(self, run=False):
-        return "we are running" if run else "no need to breath faster"
+# class Lung(Bodypart):
+#     def __init__(self, name, health):
+#         self.name = name
+#         self.health = health
+#     def active(self):
+#         return f"{self.name}: human is currently breathing"
+#     def breath_faster(self, run=False):
+#         return "we are running" if run else "no need to breath faster"
 
-class Heart(Bodypart):
-    def __init__(self, name, pumps_per_min):
-        self.name = name
-        self.pumps = pumps_per_min
-    def active(self):
-        return f"{self.name}: pumping the blood"
-    def pump_faster(self, stress=False):
-        return "we having stress" if stress else "no need"
+# class Heart(Bodypart):
+#     def __init__(self, name, pumps_per_min):
+#         self.name = name
+#         self.pumps = pumps_per_min
+#     def active(self):
+#         return f"{self.name}: pumping the blood"
+#     def pump_faster(self, stress=False):
+#         return "we having stress" if stress else "no need"
 
-class Leg(Bodypart):
-    def __init__(self, name, muscle_mass):
-        self.name = name
-        self.muscle_mass = muscle_mass
-    def active(self):
-        return f"{self.name}: walking"
-    def sprinting(self):
-        return "im running like horse"
+# class Leg(Bodypart):
+#     def __init__(self, name, muscle_mass):
+#         self.name = name
+#         self.muscle_mass = muscle_mass
+#     def active(self):
+#         return f"{self.name}: walking"
+#     def sprinting(self):
+#         return "im running like horse"
 
-class HumanBody:
-    def __init__(self):
-        self.bodyparts = []
-    def add_bodypart(self, part: Bodypart):
-        self.bodyparts.append(part)
-        return "added successfully"
-    def all_active(self):
-        return [part.active() for part in self.bodyparts]
-    def remove_bodyPart(self, part: Bodypart):
-        if part in self.bodyparts:
-            self.bodyparts.remove(part)
-        else:
-            return "no such body exist"
+# class HumanBody:
+#     def __init__(self):
+#         self.bodyparts = []
+#     def add_bodypart(self, part: Bodypart):
+#         self.bodyparts.append(part)
+#         return "added successfully"
+#     def all_active(self):
+#         return [part.active() for part in self.bodyparts]
+#     def remove_bodyPart(self, part: Bodypart):
+#         if part in self.bodyparts:
+#             self.bodyparts.remove(part)
+#         else:
+#             return "no such body exist"
 
-def welcoming():
-    print("welcome to our company")
-    print("would you like to create some human :)")
+# def welcoming():
+#     print("welcome to our company")
+#     print("would you like to create some human :)")
 
-def creat_heart(name, heart_beat):
-    return Heart(name, heart_beat)
+# def creat_heart(name, heart_beat):
+#     return Heart(name, heart_beat)
 
-def creat_lung(name, health):
-    return Lung(name, health)
+# def creat_lung(name, health):
+#     return Lung(name, health)
 
-def creat_leg(name, ms):
-    return Leg(name, ms)
+# def creat_leg(name, ms):
+#     return Leg(name, ms)
 
-def creat_body():
-    welcoming()
-    choice = int(input("creating: 1_heart | 2_lung | 3_leg: "))
-    if choice == 1:
-        name = input("choose name for the heart: ")
-        beat = int(input("choose a num for the heart_beat: "))
-        return creat_heart(name, beat)
-    elif choice == 2:
-        name = input("choose name for the lung: ")
-        health = int(input("choose a num for the health: "))
-        return creat_lung(name, health)
-    elif choice == 3:
-        name = input("choose name for the leg: ")
-        ms = int(input("choose a num for the muscle mass: "))
-        return creat_leg(name, ms)
+# def creat_body():
+#     welcoming()
+#     choice = int(input("creating: 1_heart | 2_lung | 3_leg: "))
+#     if choice == 1:
+#         name = input("choose name for the heart: ")
+#         beat = int(input("choose a num for the heart_beat: "))
+#         return creat_heart(name, beat)
+#     elif choice == 2:
+#         name = input("choose name for the lung: ")
+#         health = int(input("choose a num for the health: "))
+#         return creat_lung(name, health)
+#     elif choice == 3:
+#         name = input("choose name for the leg: ")
+#         ms = int(input("choose a num for the muscle mass: "))
+#         return creat_leg(name, ms)
 
-def creat_human():
-    human = HumanBody()
-    print("now you made your body parts, so let's make your meta human")
-    while True:
-        print("create a body part or type 10 to finish")
-        choice = input()
-        if choice == "10":
-            break
-        part = creat_body()
-        if isinstance(part, Bodypart):
-            human.add_bodypart(part)
-    return human
+# def creat_human():
+#     human = HumanBody()
+#     print("now you made your body parts, so let's make your meta human")
+#     while True:
+#         print("create a body part or type 10 to finish")
+#         choice = input()
+#         if choice == "10":
+#             break
+#         part = creat_body()
+#         if isinstance(part, Bodypart):
+#             human.add_bodypart(part)
+#     return human
 
-lung = Lung("Lung A", 90)
-heart = Heart("Heart A", 72)
-leg = Leg("Leg A", 50)
+# lung = Lung("Lung A", 90)
+# heart = Heart("Heart A", 72)
+# leg = Leg("Leg A", 50)
 
-human = HumanBody()
-human.add_bodypart(lung)
-human.add_bodypart(heart)
-human.add_bodypart(leg)
+# human = HumanBody()
+# human.add_bodypart(lung)
+# human.add_bodypart(heart)
+# human.add_bodypart(leg)
 
-print(human.all_active())
-human.remove_bodyPart(heart)
-print(human.all_active())
+# print(human.all_active())
+# human.remove_bodyPart(heart)
+# print(human.all_active())
+
