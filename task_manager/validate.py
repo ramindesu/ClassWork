@@ -39,3 +39,8 @@ def validate_phone(phone):
 def validate_email(email):
     if not email_validate.match(email):
         raise ValidationError("email is not valid")
+
+
+def validation_title(title):
+    if not title:
+        raise ValidationError("title cant be empty")
