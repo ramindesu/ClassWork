@@ -7,9 +7,24 @@ class Task:
         self.titlle = v.validation_title(title)
         self.task_id = task_id
         self.content = content
-        self.status = status
+        self._status = status
         self.start = start
         self.deadline = deadline
+
+
+    @property
+    def status(self):
+        if self._status == "done":
+            return "task is complited"
+        now = datetime.now
+        if now > self.deadline:
+            self._status = "behind the scadule"
+            return "its behind the scadule"
+        else:
+            self._status = "in prosses"
+            return "in prosses"
+
+    
 
 
 class User:
@@ -31,3 +46,8 @@ class User:
         if task not in self.tasks:
             raise v.NotFound("not found")
         self.tasks.remove(task)
+
+    def change_status(self,task:Task,status):
+        task._status = status
+        return "done"
+        
