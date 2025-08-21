@@ -11,6 +11,8 @@ class Task:
         self.start = start
         self.deadline = deadline
 
+    def __repr__(self):
+        return f"{self.__dict__}"
 
     @property
     def status(self):
@@ -23,8 +25,6 @@ class Task:
         else:
             self._status = "in prosses"
             return "in prosses"
-
-    
 
 
 class User:
@@ -47,7 +47,27 @@ class User:
             raise v.NotFound("not found")
         self.tasks.remove(task)
 
-    def change_status(self,task:Task,status):
+    def change_status(self, task: Task, status):
         task._status = status
         return "done"
-        
+
+    def show_tasks(self):
+        for task in self.tasks:
+            print(task)
+
+
+class TaskManager:
+    def __init__(self):
+        self.user = []
+        self.actions = {"actions"}
+
+    def _actions(self, time, job):
+        self.actions["actions"][time] = job
+
+    def add_user(self, user: User):
+        self.user.append(user)
+        self._actions(datetime.now(), f"add {user}")
+
+    def remove_user(self, user: User):
+        self.user.remove(Task)
+        self._actions(datetime.now(), f"remove user{user}")
