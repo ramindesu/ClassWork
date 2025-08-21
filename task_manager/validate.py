@@ -12,3 +12,9 @@ def validate_username(username):
         raise ValidationError("must be string and more than 3 or less than 20 charachaters")
     return username
 
+def validate_password(password):
+    if not password_validate.match(password):
+        raise ValidationError("musst be more than 8 chars and more than")
+    return password
+
+
