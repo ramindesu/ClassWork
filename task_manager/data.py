@@ -32,4 +32,6 @@ with open(path,"wb") as f:
     pickle.dump(users,f)
     pickle.dump(action,f)
 
-
+with open(path,"rb") as f:
+    loaded_date = pickle.load(f)
+    print(loaded_date)
