@@ -1,5 +1,6 @@
 import validate as v
 from abc import ABC
+from datetime import datetime
 
 class User(ABC):
     def __init__(self,name,email):
@@ -22,6 +23,17 @@ class Car:
         self.model = model
         self.plate = plate_number
         self.color = color
+
+class RentCar:
+    def __init__(self,customer,car,Barrow,return_date):
+        self.customer = customer
+        self.car = car
+        self.barrow = Barrow
+        self.return_date = return_date
+
+
+        
+
         
     
         
