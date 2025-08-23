@@ -18,4 +18,8 @@ def validate_email(email):
         raise ValidationError("email is not correct")
     return email
 
+def validate_password(password):
+    if not password_validate.match(password):
+        raise ValidationError("password is not valid")
+    
 
