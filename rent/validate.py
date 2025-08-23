@@ -22,4 +22,7 @@ def validate_password(password):
     if not password_validate.match(password):
         raise ValidationError("password is not valid")
     
+def validate_phone(phone):
+    if not phone_validate.match(phone):
+        raise ValidationError("phone is not currect")
 
