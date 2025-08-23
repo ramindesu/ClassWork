@@ -11,4 +11,11 @@ email_validate = re.compile(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
 def validate_username(username):
     if not username_validate.match(username):
         raise ValidationError("must be letters and upper than 2 charachter")
+    return username
+
+def validate_email(email):
+    if not email_validate.match(email):
+        raise ValidationError("email is not correct")
+    return email
+
 
