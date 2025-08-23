@@ -1,3 +1,4 @@
+from main import RentCar
 import re
 class ValidationError(Exception):
     pass
@@ -25,4 +26,13 @@ def validate_password(password):
 def validate_phone(phone):
     if not phone_validate.match(phone):
         raise ValidationError("phone is not currect")
+def class_validate(rentalcar:RentCar):
+    if rentalcar.barrow>rentalcar.return_date:
+        del rentalcar
+        print("this is not a valid obj")
+    if rentalcar.car.avialable == False:
+        del rentalcar
+        print("this car is already rented")
+    return rentalcar
+
 
