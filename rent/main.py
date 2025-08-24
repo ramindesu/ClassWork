@@ -10,23 +10,24 @@ class User(ABC):
 
 
 class Customer(User):
-    def __init__(self, name, email, phone):
+    def __init__(self, name, email, phone,role="customer"):
         super().__init__(name, email)
         self.phone = v.validate_phone(phone)
 
 
 class Admin(User):
-    def __init__(self, name, email, id):
+    def __init__(self, name, email, id,role="Admin"):
         super().__init__(name, email)
         self.id = id
 
 
 class Car:
-    def __init__(self, maker, model, plate_number, color, available=True):
+    def __init__(self, maker, model, plate_number, color,price, available=True):
         self.maker = maker
         self.model = model
         self.plate = plate_number
         self.color = color
+        self.price = price
 
 
 class RentCar:
@@ -40,9 +41,14 @@ class RentCar:
 class System:
     def __init__(self):
         self.rents = []
+        self.rent_cars = []
 
     def add_rent(self, rent: RentCar):
         self.rents.append(rent)
+        self.rent_cars.append(rent.car)
 
     def remove_rent(self, rent: RentCar):
         self.rents.remove(rent)
+        self.rent_cars.remove(rent.car)
+
+
