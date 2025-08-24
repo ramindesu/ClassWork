@@ -32,7 +32,7 @@ class Car:
         self.available = available
 
     def __str__(self):
-        return f"{self.maker} {self.model} ({self.plate_number}) - {self.color} - ${self.price} - {'Available' if self.available else 'Rented'}"
+        return f"{self.maker} {self.model} ({self.plate_number}) - {self.color} - ${self.price}/day - {'Available' if self.available else 'Rented'}"
 
 
 class RentCar:
@@ -41,6 +41,12 @@ class RentCar:
         self.car = car
         self.borrow_date = borrow_date
         self.return_date = return_date
+        self.cost = self.calculate_cost()
+
+    def calculate_cost(self):
+        days = (self.return_date - self.borrow_date).days
+        days = days if days > 0 else 1
+        return days * self.car.price
 
 
 class System:
