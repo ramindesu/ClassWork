@@ -75,6 +75,9 @@ class System:
         return [car for car in self.cars if car.available]
 
     def rent_car(self, customer: Customer, car: Car, borrow_date, return_date):
+        if not isinstance(customer, Customer):
+            raise v.ValidationError("Only customers can rent a car")
+
         if car.available:
             rent = RentCar(customer, car, borrow_date, return_date)
             self.rents.append(rent)
@@ -86,3 +89,18 @@ class System:
         if rent in self.rents:
             rent.car.available = True
             self.rents.remove(rent)
+
+    def cancel_rent(self, customer: Customer, rent: RentCar):
+        if rent.customer != customer:
+            raise v.ValidationError("You can only cancel your own rent")
+        if rent in self.rents:
+            rent.car.available = True
+            self.rents.remove(rent)
+
+    def update_rent_dates(self, customer: Customer, rent: RentCar, new_borrow_date, new_return_date):
+        if rent.customer != customer:
+            raise v.ValidationError("You can only update your own rent")
+        rent.borrow_date = new_borrow_date
+        rent.return_date = new_return_date
+        rent.cost = rent.calculate_cost()
+        return rent
