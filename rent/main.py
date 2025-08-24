@@ -3,6 +3,14 @@ from abc import ABC
 from datetime import datetime
 
 
+def admin_only(func):
+    def wrapper(self, user, *args, **kwargs):
+        if not isinstance(user, Admin):
+            raise v.ValidationError("Only admin can perform this action")
+        return func(self, user, *args, **kwargs)
+    return wrapper
+
+
 class User(ABC):
     def __init__(self, name, email, role):
         self.name = v.validate_username(name)
@@ -54,10 +62,12 @@ class System:
         self.cars = []
         self.rents = []
 
-    def add_car(self, car: Car):
+    @admin_only
+    def add_car(self, user: Admin, car: Car):
         self.cars.append(car)
 
-    def remove_car(self, car: Car):
+    @admin_only
+    def remove_car(self, user: Admin, car: Car):
         if car in self.cars:
             self.cars.remove(car)
 
