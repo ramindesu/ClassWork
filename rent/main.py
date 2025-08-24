@@ -9,6 +9,7 @@ class User(ABC):
         self.emai = v.validate_email(email)
 
 
+
 class Customer(User):
     def __init__(self, name, email, phone,role="customer"):
         super().__init__(name, email)
@@ -28,6 +29,8 @@ class Car:
         self.plate = plate_number
         self.color = color
         self.price = price
+    def __str__(self):
+        return f"{self.__dict__}"
 
 
 class RentCar:
@@ -38,8 +41,10 @@ class RentCar:
         self.return_date = return_date
 
 
+
 class System:
     def __init__(self):
+        self.cars = []
         self.rents = []
         self.rent_cars = []
 
@@ -50,5 +55,10 @@ class System:
     def remove_rent(self, rent: RentCar):
         self.rents.remove(rent)
         self.rent_cars.remove(rent.car)
+    def add_cars(self,cars):
+        self.cars.append(cars)
+    
+    def show_cars(self):
+        return [car for car in self.cars if car.availabe == True]
 
 
