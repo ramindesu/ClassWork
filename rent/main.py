@@ -66,13 +66,8 @@ class System:
     def add_car(self, user: Admin, car: Car):
         self.cars.append(car)
 
-    @admin_only
-    def remove_car(self, user: Admin, car: Car):
-        if car in self.cars:
-            self.cars.remove(car)
-
-    def show_available_cars(self):
-        return [car for car in self.cars if car.available]
+    def show_cars(self):
+        return [str(car) for car in self.cars]
 
     def rent_car(self, customer: Customer, car: Car, borrow_date, return_date):
         if not isinstance(customer, Customer):
@@ -84,11 +79,6 @@ class System:
             car.available = False
             return rent
         return None
-
-    def return_car(self, rent: RentCar):
-        if rent in self.rents:
-            rent.car.available = True
-            self.rents.remove(rent)
 
     def cancel_rent(self, customer: Customer, rent: RentCar):
         if rent.customer != customer:
