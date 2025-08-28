@@ -15,7 +15,7 @@ import json
 # print(json_translate(personal_dict))
 
 # part B
-PATH = "/Users/mohammadi/Downloads/BOOTCAMP/projects/CW/data.json"
+# PATH = "/Users/mohammadi/Downloads/BOOTCAMP/projects/CW/data.json"
 
 # with open(PATH,"r") as f:
 #     data = json.load(f)
@@ -52,9 +52,9 @@ for i in range(3):
 school = {"students": [s.to_dict() for s in students]}
 
 with open(PATH, "w") as f:
-    json.dump(school, f, indent=4)
+    json.dump(school, f, indent=1)
     print(f" Student information saved to {PATH}")
 
 with open(PATH, "r") as f:
     data = json.load(f)
-    print(json.dumps(data, indent=4))
+    print(json.dumps(data, indent=1))
