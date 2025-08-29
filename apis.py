@@ -14,23 +14,38 @@ os.system("clear")
 # -------------------------------------------------------
 
 # QUESTION 2 PART 1
-def status_checker(url):
-    try:
-        url_get = requests.get(url)
-        url_status = url_get.status_code
-        if 200 <= url_status < 300:
-            print("Successful")
-        elif 300 <= url_status < 400:
-            print("Redirection")
-        elif 400 <= url_status < 500:
-            print("Bad request")
-        elif 500 <= url_status < 600:
-            print("Server error")
-        else:
-            print(url_status)
-    except requests.exceptions.RequestException as e:
-        print(e)
+# def status_checker(url):
 
-status_checker("https://www.w3schools.com/tags/ref_httpmessages.asp")
-status_checker("https://www.w3schools.com/tags/ref_httpmessages.asp/qweqweq")
+#     url_get = requests.get(url)
+#     url_status = url_get.status_code
+#     if 200 <= url_status < 300:
+#         print("Successful")
+#     elif 300 <= url_status < 400:
+#         print("Redirection")
+#     elif 400 <= url_status < 500:
+#         print("Bad request")
+#     elif 500 <= url_status < 600:
+#         print("Server error")
+#     else:
+#         print(url_status)
+
+
+# status_checker("https://www.w3schools.com/tags/ref_httpmessages.asp")
+# status_checker("https://www.w3schools.com/tags/ref_httpmessages.asp/qweqweq")
+
+# -------------------------------------------------------------------------------
+# QUESTION 2 PART 2
+# def status_checker(url):
+
+#     url_get = requests.get(url)
+#     url_status = url_get.status_code
+#     if 200 <= url_status < 300:
+#         print("Successful")
+#     else:
+#         print("somthing went wrong")
+    
+# status_checker("https://www.w3schools.com/tags/ref_httpmessages.asp")
+# status_checker("https://www.w3schools.com/tags/ref_httpmessages.asp/qweqweq")
+# -------------------------------------------------------------------------------
+
 
