@@ -47,16 +47,16 @@ os.system("clear")
 # status_checker("https://www.w3schools.com/tags/ref_httpmessages.asp")
 # status_checker("https://www.w3schools.com/tags/ref_httpmessages.asp/qweqweq")
 # -------------------------------------------------------------------------------
-# URL = "https://jsonplaceholder.typicode.com/todos"
+URL = "https://jsonplaceholder.typicode.com/todos"
 
-# res = requests.get(URL)
-# todos = res.json()
+res = requests.get(URL)
+todos = res.json()
 
-# done_per_user = {}
+done_per_user = {}
 
-# for t in todos:
-#     if t["completed"]:
-#         uid = t["userId"]
-#         done_per_user[uid] = done_per_user.get(uid, 0) + 1
+for t in todos:
+    if t["completed"]:
+        uid = t["userId"]
+        done_per_user[uid] = done_per_user.get(uid, 0) + 1
 
-# print(done_per_user)
+print(done_per_user)
