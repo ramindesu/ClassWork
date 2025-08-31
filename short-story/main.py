@@ -1,41 +1,44 @@
 class Writer:
-    def __init__(self,name,age,email):
+    def __init__(self, name, age, email):
         self.name = name
         self.age = age
         self.email = email
 
+
 class Story:
-    def __init__(self,Title,pages,content,author:Writer,cheacked = False):
-        self.title = Title
+    def __init__(self, title, pages, content, author: Writer, checked=False):
+        self.title = title
         self.pages = pages
         self.author = author
         self.content = content
-        self.cheackef = cheacked
+        self.checked = checked  
+
 
 class FileManager:
-
     def __init__(self, filename, mode="w"):
         self.filename = filename
         self.mode = mode
         self.file = None
 
     def __enter__(self):
-        self.file = open(self.filename, self.mode, encoding="utf-8")
+        self.file = open(self.filename, self.mode)
         return self.file
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         if self.file:
             self.file.close()
 
+
 class StoryManager:
-    def __init__(self):
+    def __init__(self, filename="stories.txt"):
         self.stories = []
-    
-    def add_story(self,story:Story):
+        self.filename = filename  
+
+    def add_story(self, story: Story):
         self.stories.append(story)
 
     def save_stories(self):
-        # Save all stories' content into a file
+
         with FileManager(self.filename, "w") as f:
             for story in self.stories:
                 f.write(f"{story.title}\n")
@@ -43,12 +46,12 @@ class StoryManager:
                 f.write(f"Content: {story.content}\n")
                 f.write("-" * 40 + "\n")
 
-    def cheack_stories(self):
-        # Mark stories as checked
+    def check_stories(self):
+
         for story in self.stories:
             story.checked = True
 
-        # Read from file and filter bad words
+
         bad_words = ["bad", "ugly", "stupid"]
         filtered_lines = []
 
@@ -61,11 +64,34 @@ class StoryManager:
                     line = line.replace(bad, "***")
             filtered_lines.append(line)
 
-        # Save the cleaned version
+
         with FileManager("stories_filtered.txt", "w") as f:
             f.writelines(filtered_lines)
 
         return filtered_lines
 
-    def return_cheacl_ones(self):
+    def return_checked_ones(self):
         return [s.content for s in self.stories if s.checked]
+
+
+
+
+w1 = Writer("Ramin", 21, "ramin@example.com")
+w2 = Writer("Ali", 25, "ali@example.com")
+
+s1 = Story("My First Story", 3, "This is a good story but has a bad ending.", w1)
+s2 = Story("Adventure Time", 5, "An ugly monster appeared but the hero was smart.", w2)
+
+manager = StoryManager()
+manager.add_story(s1)
+manager.add_story(s2)
+
+manager.save_stories()
+
+print("=== Filtered Output ===")
+filtered = manager.check_stories()  
+for line in filtered:
+    print(line, end="")
+
+print("\n Checked Stories ")
+print(manager.return_checked_ones())
