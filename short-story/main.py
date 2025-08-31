@@ -1,3 +1,5 @@
+from context import *
+
 class Writer:
     def __init__(self, name, age, email):
         self.name = name
@@ -14,23 +16,10 @@ class Story:
         self.checked = checked  
 
 
-class FileManager:
-    def __init__(self, filename, mode="w"):
-        self.filename = filename
-        self.mode = mode
-        self.file = None
-
-    def __enter__(self):
-        self.file = open(self.filename, self.mode)
-        return self.file
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        if self.file:
-            self.file.close()
 
 
 class StoryManager:
-    def __init__(self, filename="stories.txt"):
+    def __init__(self, filename="short-story/stories.txt"):
         self.stories = []
         self.filename = filename  
 
@@ -76,22 +65,3 @@ class StoryManager:
 
 
 
-w1 = Writer("Ramin", 21, "ramin@example.com")
-w2 = Writer("Ali", 25, "ali@example.com")
-
-s1 = Story("My First Story", 3, "This is a good story but has a bad ending.", w1)
-s2 = Story("Adventure Time", 5, "An ugly monster appeared but the hero was smart.", w2)
-
-manager = StoryManager()
-manager.add_story(s1)
-manager.add_story(s2)
-
-manager.save_stories()
-
-print("=== Filtered Output ===")
-filtered = manager.check_stories()  
-for line in filtered:
-    print(line, end="")
-
-print("\n Checked Stories ")
-print(manager.return_checked_ones())
