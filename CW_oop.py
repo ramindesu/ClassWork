@@ -1132,61 +1132,61 @@ from abc import ABC, abstractmethod
 # print(c)
 
 
-# question 3
-from abc import ABC, abstractmethod
+# # question 3
+# from abc import ABC, abstractmethod
 
-class LibraryBase(ABC):
-    @abstractmethod
-    def add_book(self, book, writer, page):
-        pass
+# class LibraryBase(ABC):
+#     @abstractmethod
+#     def add_book(self, book, writer, page):
+#         pass
 
-    @abstractmethod
-    def remove_book(self, book):
-        pass
+#     @abstractmethod
+#     def remove_book(self, book):
+#         pass
 
-    @abstractmethod
-    def show_books(self, book=None):
-        pass
-
-
-class SummaryMixin:
-    def summary(self):
-        result = []
-        for title, writers in self.books.items():
-            result.append(f"Title: {title}")
-            for writer, pages in writers.items():
-                result.append(f"  {writer} : {pages} pages")
-        return "\n".join(result)
+#     @abstractmethod
+#     def show_books(self, book=None):
+#         pass
 
 
-class LibrarySystem(LibraryBase, SummaryMixin):
-    def __init__(self):
-        self.books = {}
+# class SummaryMixin:
+#     def summary(self):
+#         result = []
+#         for title, writers in self.books.items():
+#             result.append(f"Title: {title}")
+#             for writer, pages in writers.items():
+#                 result.append(f"  {writer} : {pages} pages")
+#         return "\n".join(result)
 
-    def add_book(self, book, writer, page):
-        if book in self.books:
-            if writer in self.books[book]:
-                return "Book with this writer already exists"
-            else:
-                self.books[book][writer] = page
-                return "Writer added to existing book"
-        else:
-            self.books[book] = {writer: page}
-            return "Book added"
 
-    def remove_book(self, book):
-        if book in self.books:
-            del self.books[book]
-            return "Book deleted"
-        return "Book not found"
+# class LibrarySystem(LibraryBase, SummaryMixin):
+#     def __init__(self):
+#         self.books = {}
 
-    def show_books(self, book=None):
-        if book:
-            if book in self.books:
-                return {book: self.books[book]}
-            else:
-                return "Book not found"
-        return self.books
+#     def add_book(self, book, writer, page):
+#         if book in self.books:
+#             if writer in self.books[book]:
+#                 return "Book with this writer already exists"
+#             else:
+#                 self.books[book][writer] = page
+#                 return "Writer added to existing book"
+#         else:
+#             self.books[book] = {writer: page}
+#             return "Book added"
+
+#     def remove_book(self, book):
+#         if book in self.books:
+#             del self.books[book]
+#             return "Book deleted"
+#         return "Book not found"
+
+#     def show_books(self, book=None):
+#         if book:
+#             if book in self.books:
+#                 return {book: self.books[book]}
+#             else:
+#                 return "Book not found"
+#         return self.books
     
 # lib = LibrarySystem()
 # print(lib.add_book("Python Basics", "Ali", 300))
@@ -1374,7 +1374,7 @@ class LibrarySystem(LibraryBase, SummaryMixin):
 # print(human.all_active())
 
 
-
+import logging
 class Order:
     def __init__(self,order_id,cus_name,amount):
         self.cus_name = cus_name
@@ -1391,6 +1391,36 @@ class Order:
 
         else: 
             self.status = "ERROR"
-            
+
+class OrderLogger:
+    def __init__(self):
+        logging.basicConfig (
+            filename="custumers.log",
+            level= logging.DEBUG,
+            format="%(asctime)s - %(levelname)s - %(message)s"
+        )
+    def log_order(self, order: Order):
+
+        self.logger.debug(f"Order ID: {order.order_id} | Customer: {order.customer_name}")
+
+        if order.status == "Processed":
+            self.logger.info(
+                f"Order {order.order_id} processed successfully (Customer: {order.customer_name})"
+            )
+        elif order.status == "Pending Approval":
+            self.logger.warning(
+                f"Order {order.order_id} pending approval (Customer: {order.customer_name})"
+            )
+        elif order.status == "Error":
+            self.logger.error(
+                f"Order {order.order_id} invalid amount (Customer: {order.customer_name})"
+            )
+        else:
+            self.logger.error(
+                f"Order {order.order_id} unknown status (Customer: {order.customer_name})"
+            )
+    
+
+
     
         
