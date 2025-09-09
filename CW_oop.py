@@ -1377,8 +1377,8 @@ from abc import ABC, abstractmethod
 import logging
 
 class Order:
-    def __init__(self, order_id, cus_name, amount):
-        self.cus_name = cus_name
+    def __init__(self, order_id, customer_name, amount):
+        self.customer_name = customer_name
         self.order_id = order_id
         self.amount = amount
         self.status = ""
@@ -1388,8 +1388,10 @@ class Order:
             self.status = "Processed"
         elif self.amount >= 5000:
             self.status = "Pending Approval"
-        else:
+        elif self.amount == 0 :
             self.status = "Error"
+        else:
+            self.status == None
 
 
 class OrderLogger:
@@ -1403,23 +1405,23 @@ class OrderLogger:
 
     def log_order(self, order: Order):
 
-        self.logger.debug(f"Order ID: {order.order_id} | Customer: {order.cus_name}")
+        self.logger.debug(f"Order ID: {order.order_id} | Customer: {order.customer_name}")
 
         if order.status == "Processed":
             self.logger.info(
-                f"Order {order.order_id} processed successfully (Customer: {order.cus_name})"
+                f"Order {order.order_id} processed successfully (Customer: {order.customer_name})"
             )
         elif order.status == "Pending Approval":
             self.logger.warning(
-                f"Order {order.order_id} pending approval (Customer: {order.cus_name})"
+                f"Order {order.order_id} pending approval (Customer: {order.customer_name})"
             )
         elif order.status == "Error":
             self.logger.error(
-                f"Order {order.order_id} invalid amount (Customer: {order.cus_name})"
+                f"Order {order.order_id} invalid amount (Customer: {order.customer_name})"
             )
         else:
-            self.logger.error(
-                f"Order {order.order_id} unknown status (Customer: {order.cus_name})"
+            self.logger.critical(
+                f"Order {order.order_id} unknown status (Customer: {order.customer_name})"
             )
 
 
@@ -1438,3 +1440,35 @@ for order in orders:
         order.process_order()
         logger.log_order(order)
 
+# ---------------------------------------
+# class Product:
+#     def __init__(self,product_id,name,price,stock):
+#         self.product_id = product_id
+#         self.name = name
+#         self.price = price
+#         self.stock = stock
+    
+#     def purch(self,quantity):
+#         if quantity <= self.stock:
+#             self.stock -= quantity
+#             print(f"u purched this amount of product{quantity}")
+
+#         else:
+#             return "the amount that youre trying is outa ur budget"
+    
+# class Bank:
+#     pass
+# class User:
+#     def __init__(self,User_id,name,bank_account:Bank):
+#         self.user_id = User_id
+#         self.name = name
+#         self.bank_account = bank_account
+
+#     def purching(self):
+#         pass
+    
+
+    
+        
+        
+        
