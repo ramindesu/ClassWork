@@ -78,4 +78,10 @@ class PostFetcher:
         filtered = [post for post in self.posts if post["userId"] == userId]
         pprint(filtered) 
     
-        
+fetcher = PostFetcher()
+
+print("all post :")
+fetcher.fetch_posts()
+
+print("only 3")
+fetcher.filter_posts(3)

@@ -1373,3 +1373,24 @@ class LibrarySystem(LibraryBase, SummaryMixin):
 # human.remove_bodyPart(heart)
 # print(human.all_active())
 
+
+
+class Order:
+    def __init__(self,order_id,cus_name,amount):
+        self.cus_name = cus_name
+        self.order_id = order_id
+        self.amount = amount
+        self.status = ""
+    
+    def process_order(self):
+        if 500 > self.amount > 0 :
+            self.status = "processed"
+
+        elif self.status >= 5000:
+            self.status = "pending approvall"
+
+        else: 
+            self.status = "ERROR"
+            
+    
+        
