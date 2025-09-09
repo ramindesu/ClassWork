@@ -1375,52 +1375,66 @@ from abc import ABC, abstractmethod
 
 
 import logging
+
 class Order:
-    def __init__(self,order_id,cus_name,amount):
+    def __init__(self, order_id, cus_name, amount):
         self.cus_name = cus_name
         self.order_id = order_id
         self.amount = amount
         self.status = ""
-    
+
     def process_order(self):
-        if 500 > self.amount > 0 :
-            self.status = "processed"
+        if 0 < self.amount < 5000:
+            self.status = "Processed"
+        elif self.amount >= 5000:
+            self.status = "Pending Approval"
+        else:
+            self.status = "Error"
 
-        elif self.status >= 5000:
-            self.status = "pending approvall"
-
-        else: 
-            self.status = "ERROR"
 
 class OrderLogger:
     def __init__(self):
-        logging.basicConfig (
-            filename="custumers.log",
-            level= logging.DEBUG,
+        logging.basicConfig(
+            filename="customers.log",
+            level=logging.DEBUG,
             format="%(asctime)s - %(levelname)s - %(message)s"
         )
+        self.logger = logging.getLogger(__name__)
+
     def log_order(self, order: Order):
 
-        self.logger.debug(f"Order ID: {order.order_id} | Customer: {order.customer_name}")
+        self.logger.debug(f"Order ID: {order.order_id} | Customer: {order.cus_name}")
 
         if order.status == "Processed":
             self.logger.info(
-                f"Order {order.order_id} processed successfully (Customer: {order.customer_name})"
+                f"Order {order.order_id} processed successfully (Customer: {order.cus_name})"
             )
         elif order.status == "Pending Approval":
             self.logger.warning(
-                f"Order {order.order_id} pending approval (Customer: {order.customer_name})"
+                f"Order {order.order_id} pending approval (Customer: {order.cus_name})"
             )
         elif order.status == "Error":
             self.logger.error(
-                f"Order {order.order_id} invalid amount (Customer: {order.customer_name})"
+                f"Order {order.order_id} invalid amount (Customer: {order.cus_name})"
             )
         else:
             self.logger.error(
-                f"Order {order.order_id} unknown status (Customer: {order.customer_name})"
+                f"Order {order.order_id} unknown status (Customer: {order.cus_name})"
             )
-    
 
 
-    
-        
+
+
+orders = [
+        Order(101, "ramin", 3000),
+        Order(102, "Atefe", 7000),
+        Order(103, "nilufar", 0),
+        Order(104, "reza", -200),
+    ]
+
+logger = OrderLogger()
+
+for order in orders:
+        order.process_order()
+        logger.log_order(order)
+

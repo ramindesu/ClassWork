@@ -1,0 +1,8 @@
+2025-09-09 18:32:18,558 - DEBUG - Order ID: 101 | Customer: Ramin
+2025-09-09 18:32:18,558 - INFO - Order 101 processed successfully (Customer: Ramin)
+2025-09-09 18:32:18,558 - DEBUG - Order ID: 102 | Customer: Ali
+2025-09-09 18:32:18,558 - WARNING - Order 102 pending approval (Customer: Ali)
+2025-09-09 18:32:18,558 - DEBUG - Order ID: 103 | Customer: Sara
+2025-09-09 18:32:18,558 - ERROR - Order 103 invalid amount (Customer: Sara)
+2025-09-09 18:32:18,558 - DEBUG - Order ID: 104 | Customer: Nima
+2025-09-09 18:32:18,558 - ERROR - Order 104 invalid amount (Customer: Nima)
