@@ -38,10 +38,10 @@
 // question number 2
 let numbers = +prompt("please enter a number");
 let sum = 0;
-if (numbers < 1) {
+if (numbers <= 1) {
   console.log("u need a postive number");
 } else {
-  for (let i = 0; i < numbers; i++) {
+  for (let i = 0; i <= numbers; i++) {
     sum += i
   }
   console.log(sum)
