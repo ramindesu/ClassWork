@@ -36,13 +36,27 @@
 // calculate(number_1, operator,number_2);
 
 // question number 2
-let numbers = +prompt("please enter a number");
-let sum = 0;
-if (numbers <= 1) {
-  console.log("u need a postive number");
-} else {
-  for (let i = 0; i <= numbers; i++) {
-    sum += i
-  }
-  console.log(sum)
+// let numbers = +prompt("please enter a number");
+// let sum = 0;
+// if (numbers < 1) {
+//   console.log("u need a postive number");
+// } else {
+//   for (let i = 0; i <= numbers; i++) {
+//     sum += i
+//   }
+//   console.log(sum)
+// }
+
+// question 4
+
+function  print(my_friends) {
+for (let i = 0 ; i < my_friends.length ; i++){
+        console.log(my_friends[i])
 }
+}
+
+let my_friends = ['atefeh','reza','niloufar','ramin']
+print(my_friends)
+console.log('-------------------------after change---------------------------')
+my_friends[2] = 'ms arab'
+print(my_friends)
