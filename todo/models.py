@@ -37,28 +37,29 @@ class TodoService:
             );
             """)
         print(" Tables created successfully")
-    def add_todo(self,user_id,title,descrption,due_time):
+
+    def add_todo(self, user_id, title, description, due_time):
         with DataBase(self.data) as cur:
-            cur.execute(f'insert into todos (user_id,title,description,due_time) values ({user_id},{title},{descrption},{due_time})') 
+            cur.execute(
+                'INSERT INTO todos (user_id, title, description, due_time) VALUES (%s, %s, %s, %s) RETURNING id',
+                (user_id, title, description, due_time)
+            )
             todo_id = cur.fetchone()[0]
 
-        self.logger.log_action(user_id,'add_task', todo_id)
+        self.logger.log_action(user_id, 'add_task', todo_id)
         return todo_id
-    
-    def list(self,user_id):
+
+    def list(self, user_id):
         with DataBase(self.data) as cur:
-            cur.execute(f'select * from todos where user_id = {user_id}')
+            cur.execute('SELECT * FROM todos WHERE user_id = %s', (user_id,))
             return cur.fetchall()
     
-    def update(self,user_id,status,todo_id):
+    def update(self, user_id, status, todo_id):
         with DataBase(self.data) as cur:
-            cur.execute(f'update todos set status = {status} where id = {todo_id}')
-        self.logger.log_action(user_id,'update_task',todo_id)
+            cur.execute('UPDATE todos SET status = %s WHERE id = %s', (status, todo_id))
+        self.logger.log_action(user_id, 'update_task', todo_id)
 
-    def delete(self,user_id,todo_id):
-        with DataBase(self.data ) as cur :
-            cur.execute(f'delete from todos where id = {todo_id}')
-        self.logger.log_action(user_id,"delete_task", todo_id)
-    
-
-    
+    def delete(self, user_id, todo_id):
+        with DataBase(self.data) as cur:
+            cur.execute('DELETE FROM todos WHERE id = %s', (todo_id,))
+        self.logger.log_action(user_id, "delete_task", todo_id)
