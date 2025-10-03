@@ -45,3 +45,12 @@ class TodoService:
         self.logger.log_action(user_id,'add task', todo_id)
         return todo_id
     
+    def list(self,user_id):
+        with DataBase(self.data) as cur:
+            cur.execute(f'select * from todos where user_id = {user_id}')
+            return cur.fetchall()
+    
+    def update(self,user_id,status,todo_id):
+        with DataBase(self.data) as cur:
+            cur.execute(f'update todos set status = {status} where id = {todo_id}')
+    
