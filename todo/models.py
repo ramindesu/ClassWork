@@ -37,4 +37,11 @@ class TodoService:
             );
             """)
         print(" Tables created successfully")
+    def add_todo(self,user_id,title,descrption,due_time):
+        with DataBase(self.data) as cur:
+            cur.execute(f'insert into todos (user_id,title,description,due_time) values ({user_id},{title},{descrption},{due_time})') 
+            todo_id = cur.fetchone()[0]
 
+        self.logger.log_action(user_id,'add task', todo_id)
+        return todo_id
+    

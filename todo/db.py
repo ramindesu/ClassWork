@@ -3,7 +3,7 @@ import  psycopg
 class DataBase:
     def __init__(self,data):
         """
-        dsn = "dbname=todo_app user=postgres password=shir8844 host=localhost port=5432
+        data = "dbname=todo_app user=postgres password=shir8844 host=localhost port=5432
         """
         self.data = data
         self.con = ''
