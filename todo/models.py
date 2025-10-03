@@ -42,7 +42,7 @@ class TodoService:
             cur.execute(f'insert into todos (user_id,title,description,due_time) values ({user_id},{title},{descrption},{due_time})') 
             todo_id = cur.fetchone()[0]
 
-        self.logger.log_action(user_id,'add task', todo_id)
+        self.logger.log_action(user_id,'add_task', todo_id)
         return todo_id
     
     def list(self,user_id):
@@ -53,9 +53,12 @@ class TodoService:
     def update(self,user_id,status,todo_id):
         with DataBase(self.data) as cur:
             cur.execute(f'update todos set status = {status} where id = {todo_id}')
-        self.logger.log_action(user_id,'update task',todo_id)
+        self.logger.log_action(user_id,'update_task',todo_id)
 
-    
+    def delete(self,user_id,todo_id):
+        with DataBase(self.data ) as cur :
+            cur.execute(f'delete from todos where id = {todo_id}')
+        self.logger.log_action(user_id,"delete_task", todo_id)
     
 
     
