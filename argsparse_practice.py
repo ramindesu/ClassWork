@@ -1,5 +1,5 @@
-
 import argparse
+
 # # import requests
 # # import json
 
@@ -17,8 +17,8 @@ import argparse
 
 # # with open("required.json","w") as f:
 # #     json.dump(required,f,indent=4)
-    
-# # # # part b 
+
+# # # # part b
 # # import argparse
 # # import requests
 # # import json
@@ -48,7 +48,7 @@ import argparse
 
 # # print("Data saved successfully to output.json")
 
-# # # PART c 
+# # # PART c
 
 # import requests
 # from pprint import pprint
@@ -72,12 +72,12 @@ import argparse
 #                 "title": post["title"],
 #                 "body": post["body"][:50]
 #             })
-#         pprint(required)  
+#         pprint(required)
 
 #     def filter_posts(self, userId):
 #         filtered = [post for post in self.posts if post["userId"] == userId]
-#         pprint(filtered) 
-    
+#         pprint(filtered)
+
 # fetcher = PostFetcher()
 
 # print("all post :")
@@ -104,3 +104,19 @@ import argparse
 # print(f"Average: {avg}")
 # print(f"Max: {maximum}")
 # ------------------------------------------------------------------------------------------------------------------------------------
+# question number 2
+# parser = argparse.ArgumentParser()
+# parser.add_argument('text', type=str,help='some text')
+# parser.add_argument('--verbose' , action="store_true" , help='shows details')
+
+# args = parser.parse_args()
+
+# if args.verbose:
+#     print(args.text)
+#     print(len(args.text))
+#     print(args.text.upper())
+#     print(args.text.lower())
+# else:
+#     print(args.text)
+# ------------------------------------------------------------------------------------------------------------------------------------
+# question number 3
