@@ -22,7 +22,7 @@ def validate_email(email):
 def validate_password(password):
     if not password_validate.match(password):
         raise ValidationError("password is not valid")
-    
+    return password
 def validate_phone(phone):
     if not phone_validate.match(phone):
         raise ValidationError("phone is not currect")

@@ -54,12 +54,13 @@ class TodoService:
             cur.execute('SELECT * FROM todos WHERE user_id = %s', (user_id,))
             return cur.fetchall()
     
-    def update(self, user_id, status, todo_id):
+    def update(self, user_id, todo_id ,status):
         with DataBase(self.data) as cur:
             cur.execute('UPDATE todos SET status = %s WHERE id = %s', (status, todo_id))
         self.logger.log_action(user_id, 'update_task', todo_id)
 
     def delete(self, user_id, todo_id):
+        self.logger.log_action(user_id, "delete_task", todo_id)
         with DataBase(self.data) as cur:
             cur.execute('DELETE FROM todos WHERE id = %s', (todo_id,))
-        self.logger.log_action(user_id, "delete_task", todo_id)
+        
