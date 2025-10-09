@@ -120,3 +120,31 @@ import argparse
 #     print(args.text)
 # ------------------------------------------------------------------------------------------------------------------------------------
 # question number 3
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--x", type=float, required=True, help="first num")
+parser.add_argument("--y", type=float, required=True, help="secend num")
+parser.add_argument("--operation", type=str, required=True, choices=['add' , "subtract", "multiply", "divide"], help='the agriration')
+
+parser.add_argument(
+    "--verbose",
+    action="store_true",
+    help="Show detailed output"
+)
+
+args = parser.parse_args()
+if args.operation == "add":
+    result = args.x + args.y
+elif args.operation == "subtract":
+    result = args.x - args.y
+elif args.operation == "multiply":
+    result = args.x * args.y
+elif args.operation == "divide":
+    if args.y == 0:
+        print("Error: cannot divide by zero!")
+        exit()
+    result = args.x / args.y
+if args.verbose:
+    print(f"Operation: {args.operation}, x={args.x}, y={args.y}, result={result}")
+else:
+    print(result)
