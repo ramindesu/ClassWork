@@ -1,5 +1,5 @@
 
-# # import argparse
+import argparse
 # # import requests
 # # import json
 
@@ -85,4 +85,22 @@
 
 # print("only 3")
 # fetcher.filter_posts(3)
+# ------------------------------------------------------------------------------------------------------------------------------------
+# question number 1
+# parser = argparse.ArgumentParser()
+# parser.add_argument('numbers' , type=float, nargs="+" , help="u have to insert couple of  bro")
+# args = parser.parse_args()
+
+# if not args.numbers:
+#     print('there is no number sir')
+
+# number = args.numbers
+# total = sum(number)
+# avg = total / len(number)
+# maximum = max(number)
+
+# print(f"Numbers: {number}")
+# print(f"Sum: {total}")
+# print(f"Average: {avg}")
+# print(f"Max: {maximum}")
 # ------------------------------------------------------------------------------------------------------------------------------------
