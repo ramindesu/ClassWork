@@ -97,9 +97,7 @@ class UniService:
             return cur.fetchall()
 
     def list_students_by_age(self):
-        """
-        نمایش همه دانشجوها از پیر به جوان
-        """
+
         with DataBase(self.data) as cur:
             cur.execute(
                 """
@@ -153,19 +151,103 @@ class UniService:
             )
 
 
-def oldest_and_youngest_student_union(self):
-    with DataBase(self.data) as cur:
-        cur.execute(
+    def oldest_and_youngest_student_union(self):
+        with DataBase(self.data) as cur:
+            cur.execute(
+                """
+                SELECT 'oldest' AS type, *
+                FROM student
+                ORDER BY birth_year ASC
+                LIMIT 1
+                UNION ALL
+                SELECT 'youngest' AS type, *
+                FROM student
+                ORDER BY birth_year DESC
+                LIMIT 1
             """
-            SELECT 'oldest' AS type, *
-            FROM student
-            ORDER BY birth_year ASC
-            LIMIT 1
-            UNION ALL
-            SELECT 'youngest' AS type, *
-            FROM student
-            ORDER BY birth_year DESC
-            LIMIT 1
-        """
-        )
+            )
         return cur.fetchall()
+    def count_majors_per_master(self):
+        with DataBase(self.data) as cur:
+            cur.execute("""
+                SELECT master.name, COUNT(major.id) as num_majors
+                FROM master
+                LEFT JOIN major ON master.id = major.master_id
+                GROUP BY master.name
+            """)
+            return cur.fetchall()
+    def remove_major_department_relation(self):
+        with DataBase(self.data) as cur:
+            cur.execute("""
+                ALTER TABLE major
+                DROP COLUMN IF EXISTS department_id
+            """)
+    def create_index_on_master_name(self):
+        with DataBase(self.data) as cur:
+            cur.execute("""
+                CREATE INDEX IF NOT EXISTS idx_master_name
+                ON master(name)
+            """)
+    def list_students_with_majors(self):
+        with DataBase(self.data) as cur:
+            cur.execute("""
+                SELECT s.name as student_name, m.title as major_title
+                FROM student s
+                JOIN enrollments e ON s.id = e.student_id
+                JOIN major m ON m.id = e.major_id
+            """)
+            return cur.fetchall()
+    def list_master_department_major(self):
+        with DataBase(self.data) as cur:
+            cur.execute("""
+                SELECT master.name as master_name, d.title as department_title, major.title as major_title
+                FROM master
+                LEFT JOIN department d ON master.department_id = d.id
+                LEFT JOIN major ON major.master_id = master.id
+            """)
+            return cur.fetchall()
+
+
+    def list_majors_per_student(self):
+        with DataBase(self.data) as cur:
+            cur.execute("""
+                SELECT s.name as student_name, m.title as major_title
+                FROM student s
+                JOIN enrollments e ON s.id = e.student_id
+                JOIN major m ON m.id = e.major_id
+            """)
+            return cur.fetchall()
+
+    def major_with_most_students(self):
+        with DataBase(self.data) as cur:
+            cur.execute("""
+                SELECT m.title, COUNT(e.student_id) as student_count
+                FROM major m
+                JOIN enrollments e ON m.id = e.major_id
+                GROUP BY m.title
+                ORDER BY student_count DESC
+                LIMIT 1
+            """)
+            return cur.fetchone()
+    def department_with_most_majors(self):
+        with DataBase(self.data) as cur:
+            cur.execute("""
+                SELECT d.title, COUNT(major.id) as num_majors
+                FROM department d
+                JOIN master ON master.department_id = d.id
+                JOIN major ON major.master_id = master.id
+                GROUP BY d.title
+                ORDER BY num_majors DESC
+                LIMIT 1
+            """)
+            return cur.fetchone()
+    def list_student_major_master(self):
+        with DataBase(self.data) as cur:
+            cur.execute("""
+                SELECT s.name as student_name, m.title as major_title, master.name as master_name
+                FROM student s
+                JOIN enrollments e ON s.id = e.student_id
+                JOIN major m ON m.id = e.major_id
+                LEFT JOIN master ON m.master_id = master.id
+            """)
+            return cur.fetchall()
