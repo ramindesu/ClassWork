@@ -80,7 +80,7 @@ while True:
         elif user_choice == "19":
             pprint(service.list_student_major_master())
         elif user_choice == "0":
-            print("Goodbye! 👋")
+            print("Goodbye")
             break
         else:
             print("not valid choice. Please try again.")

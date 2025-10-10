@@ -256,3 +256,7 @@ class UniService:
                 LEFT JOIN master ON m.master_id = master.id
             """)
             return cur.fetchall()
+    def excute_query(self,query,params=()):
+        with DataBase(self.data) as cur:
+            cur.execute(query,params or ())
+            return True
