@@ -154,6 +154,28 @@ import argparse
 # parser = argparse.ArgumentParser()
 # parser.add_argument('--config' , type=str , required=True,help='turns json to normal text')
 # args = parser.parse_args()
-# data = json.loads(args.config)
+# try:
+#     data = json.loads(args.config)
+#     print(data)
+# except json.JSONDecodeError as e:
+#     print(f" json nist: {e}")
+
 # for key , val in data.items() :
 #     print(f'{key}:{val}')
+# ------------------------------------------------------------------------------------------------------------------------------------
+# question 10
+# import os
+# parser = argparse.ArgumentParser(description='shows details')
+# parser.add_argument('--file' , required=True)
+# parser.add_argument('--verbose', action='store_true',help='shows more detail')
+# args = parser.parse_args()
+
+# with open(args.file,'r') as f:
+#     content = f.read()
+
+# if args.verbose:
+#     print(len(content))
+#     print(os.path.abspath(args.file))
+# else:
+#     print('for more details use verbose')
+
