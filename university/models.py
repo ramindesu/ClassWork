@@ -54,4 +54,6 @@ class TodoService:
             """)
 
         print("Tables created successfully")
-    
+    def queryes(self,query):
+        with DataBase(self.data) as cur:
+            cur.execute(query)
