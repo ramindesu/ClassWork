@@ -155,18 +155,23 @@ class UniService:
         with DataBase(self.data) as cur:
             cur.execute(
                 """
-                SELECT 'oldest' AS type, *
-                FROM student
-                ORDER BY birth_year ASC
-                LIMIT 1
+                SELECT * FROM (
+                    SELECT 'oldest' AS type, *
+                    FROM student
+                    ORDER BY birth_year ASC
+                    LIMIT 1
+                ) AS oldest
                 UNION ALL
-                SELECT 'youngest' AS type, *
-                FROM student
-                ORDER BY birth_year DESC
-                LIMIT 1
-            """
+                SELECT * FROM (
+                    SELECT 'youngest' AS type, *
+                    FROM student
+                    ORDER BY birth_year DESC
+                    LIMIT 1
+                ) AS youngest;
+                """
             )
-        return cur.fetchall()
+            return cur.fetchall()
+
     def count_majors_per_master(self):
         with DataBase(self.data) as cur:
             cur.execute("""
