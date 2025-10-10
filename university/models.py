@@ -1,6 +1,6 @@
 from db import DataBase
 
-class TodoService:
+class UniService:
     def __init__(self, data):
         self.data = data
 
@@ -29,7 +29,7 @@ class TodoService:
                     id SERIAL PRIMARY KEY,
                     name VARCHAR(60) NOT NULL,
                     field VARCHAR(100) NOT NULL,
-                    department_id INT UNIQUE REFERENCES department(id) ON DELETE CASCADE
+                    department_id INT  REFERENCES department(id) ON DELETE CASCADE
                 );
             """)
 
@@ -54,6 +54,30 @@ class TodoService:
             """)
 
         print("Tables created successfully")
+    def list(self, table):
+        with DataBase(self.data) as cur:
+            cur.execute(f'SELECT * FROM {table}')
+            return cur.fetchall()
+    def add_email(self):
+        with DataBase(self.data) as cur:
+         cur.execute("""
+            ALTER TABLE student
+            ADD COLUMN IF NOT EXISTS email VARCHAR(255);
+        """)
+        print("Email column added (if it didn't exist)")
     def queryes(self,query):
         with DataBase(self.data) as cur:
             cur.execute(query)
+    def remove_master_field(self):
+     with DataBase(self.data) as cur:
+        cur.execute("""
+            ALTER TABLE master
+            DROP COLUMN IF EXISTS field;
+        """)
+        print("Column 'field' removed from master table (if it existed)")
+    
+    def list_majors(self):
+        with DataBase(self.data) as cur:
+            cur.execute("SELECT * FROM major")
+            return cur.fetchall()
+
