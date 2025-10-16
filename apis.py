@@ -1,6 +1,7 @@
 import requests
 import os
 os.system("clear")
+from pprint import pprint
 # imagine u go to a resturant and order somthing from the menu the waiter(api) sends ur request to the kitchen(back-end) and it gives ur food(ur respond)
 # so yeah it a way that machines talk to eachother 
 # EXAMPLE:
@@ -47,16 +48,38 @@ os.system("clear")
 # status_checker("https://www.w3schools.com/tags/ref_httpmessages.asp")
 # status_checker("https://www.w3schools.com/tags/ref_httpmessages.asp/qweqweq")
 # -------------------------------------------------------------------------------
-URL = "https://jsonplaceholder.typicode.com/todos"
+# URL = "https://jsonplaceholder.typicode.com/todos"
 
+# res = requests.get(URL)
+# todos = res.json()
+
+# done_per_user = {}
+
+# for t in todos:
+#     if t["completed"]:
+#         uid = t["userId"]
+#         done_per_user[uid] = done_per_user.get(uid, 0) + 1
+
+# print(done_per_user)
+# -------------------------------------------------------------------------------
+import requests
+from pprint import pprint
+
+URL = 'https://68e8e915f2707e6128ccbb54.mockapi.io/books/'
 res = requests.get(URL)
-todos = res.json()
+books = res.json()
+pprint(books)
 
-done_per_user = {}
+# def delete_book(id: int, source=books):
+#     """Deletes the book by id"""
+#     for book in source:
+#         if book.get("id") == str(id): 
+#             response = requests.delete(f"{URL}/{id}")
+#             if response.status_code == 200:
+#                 print(f"Book with id={id} deleted with succses.")
+#             else:
+#                 print(f"failed to delete book with id={id} Status code: {response.status_code}")
+#             return
+#     print(f"No book found with id={id}.")
 
-for t in todos:
-    if t["completed"]:
-        uid = t["userId"]
-        done_per_user[uid] = done_per_user.get(uid, 0) + 1
-
-print(done_per_user)
+# # delete_book(14)
