@@ -20,7 +20,7 @@ parser.add_argument('--attr', help="Text or number to search for a book")
 
 args = parser.parse_args()
 
-# ---- COMMANDS ----
+
 if args.command == 'add':
     if not (args.title and args.author and args.isbn):
         print(" Missing required arguments: --title, --author, --isbn")
