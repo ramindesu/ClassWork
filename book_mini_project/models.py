@@ -11,6 +11,7 @@ class Book:
     def read_book(self):
         self.read = True
         return f"The book '{self.title}' has been read."
+    
 
     def i_want_it_in_json(self):
         json_file = {
@@ -19,10 +20,11 @@ class Book:
             "isbn": self.isbn,
             "read": self.read,
         }
-        return json.dumps(json_file)
+        return json.dumps(self.__dict__)
+        # return json.dumps(self.json_file)
 
     def updatintg(self, attribiute, value):
         if attribiute not in ("title", "author", "isbn", "read"):
-            return "You can’t update this attribute."
+            return "You cant update this attribute."
         setattr(self, attribiute, value)
         return f"{attribiute} has been updated to {value}."
