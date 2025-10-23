@@ -35,7 +35,7 @@ class Query:
             cur.execute("SELECT * FROM book;")
             books = cur.fetchall()
         if not books:
-            print(" No books found.")
+                raise ValueError("books is not found")
         else:
             print(" All books:")
             for book in books:

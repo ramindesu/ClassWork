@@ -57,8 +57,15 @@ elif args.command == 'search':
         print("Please enter --attr for searching (title, author, or isbn).")
     else:
         query.search_book(args.attr)
+        data = query.search_book(args.attr)
 
-elif args.command == 'export-json':
+        with open(args.output,'w') as f:
+            json_data = json.dump(data)
+            f.write(json_data)
+        print("data is in the file with search")
+
+# elif args.command == 'export-json':
+def exporting():
     if not args.output:
         print("Please enter --output file name for export.")
     else:
@@ -67,5 +74,5 @@ elif args.command == 'export-json':
             json.dump(books, f, indent=4)
         print(f"Exported {len(books)} books to {args.output}")
 
-else:
-    print("Command not found.")
+# else:
+#     print("Command not found.")
