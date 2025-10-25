@@ -179,3 +179,18 @@ import argparse
 # else:
 #     print('for more details use verbose')
 
+# -----------------------------------------------------------------------------------------------------------------------------------
+parser = argparse.ArgumentParser(description='simple math command')
+sub_parser = parser.add_subparsers(dest='command', help='available command')
+# # ----------------------------------------------------------------------------------------------------------------------------------
+
+add_parser = sub_parser.add_parser('add',help='add two numbers')
+add_parser.add_argument('x',type=float,help='first number')
+add_parser.add_argument('y',type=float,help='secend number')
+
+# # ----------------------------------------------------------------------------------------------------------------------------------
+
+
+mul_parser = sub_parser.add_parser('multiply',help='multplies two numbers')
+mul_parser.add_argument('x',type=float,help='first number')
+mul_parser.add_argument('y',type=float,help='secend number')
