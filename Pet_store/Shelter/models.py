@@ -12,30 +12,40 @@ class Pet(models.Model):
     availability = models.BooleanField(default=True)
     adopted_time = models.DateTimeField(auto_now_add=True)
     siblings = models.ForeignKey(
-        'self',
+        "self",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        default='haha you are alone',
+        default=None,
     )
 
     def __str__(self):
         return f"{self.name} - {self.species}"
+
     class Meta:
-        verbose_name = 'Pet'
-        verbose_name_plural = 'Pets'
-        ordering = ['name']
+        verbose_name = "Pet"
+        verbose_name_plural = "Pets"
+        ordering = ["name"]
+
 
 class Owner(models.Model):
     first_name = models.CharField(max_length=60)
-    last_name =models.CharField(max_length=60)
-    optional_message= models.TextField(blank=True,null=True)
+    last_name = models.CharField(max_length=60)
+    optional_message = models.TextField(blank=True, null=True)
     request_time = models.DateTimeField(auto_now_add=True)
-    pet= models.ForeignKey(Pet,on_delete=models.CASCADE)
-    sub_owner = models.ForeignKey('self' , blank= True,null= True , default= 'find some friends bro',on_delete=models.SET_DEFAULT)
+    pet = models.ForeignKey(Pet, on_delete=models.CASCADE)
+    sub_owner = models.ForeignKey(
+        "self",
+        blank=True,
+        null=True,
+        default=None,
+        on_delete=models.SET_DEFAULT,
+    )
+
     def __str__(self):
         return f"{self.first_name} - {self.last_name}"
+
     class Meta:
-        verbsoe_name = 'Owner'
-        verbsoe_name_plural = 'Owners'
-        ordering = ['first_name']
+        verbose_name = "Owner"
+        verbose_name_plural = "Owners"
+        ordering = ["first_name"]
