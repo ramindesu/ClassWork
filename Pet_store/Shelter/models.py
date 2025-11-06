@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.validators import MinValueValidator
+from django.core.validators import MinValueValidator ,RegexValidator
 
 
 # Create your models here.
@@ -8,6 +8,7 @@ class Pet(models.Model):
     age = models.PositiveSmallIntegerField(validators=[MinValueValidator(1)])
     species = models.CharField(max_length=60)
     description = models.TextField(blank=True, null=True)
+    phone = models.CharField(validators=[RegexValidator(r"^([+]?\d{1,2}[-\s]?|)\d{3}[-\s]?\d{3}[-\s]?\d{4}$")])
     image = models.CharField(max_length=250, null=True, blank=True)
     availability = models.BooleanField(default=True)
     adopted_time = models.DateTimeField(auto_now_add=True)
