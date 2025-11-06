@@ -10,6 +10,7 @@ class Pet(models.Model):
     description = models.TextField(blank=True, null=True)
     image = models.CharField(max_length=250, null=True, blank=True)
     availability = models.BooleanField(default=True)
+    adopted_time = models.DateTimeField(auto_now_add=True)
     siblings = models.ForeignKey(
         'self',
         on_delete=models.SET_NULL,
@@ -25,3 +26,16 @@ class Pet(models.Model):
         verbose_name_plural = 'Pets'
         ordering = ['name']
 
+class Owner(models.Model):
+    first_name = models.CharField(max_length=60)
+    last_name =models.CharField(max_length=60)
+    optional_message= models.TextField(blank=True,null=True)
+    request_time = models.DateTimeField(auto_now_add=True)
+    pet= models.ForeignKey(Pet,on_delete=models.CASCADE)
+    sub_owner = models.ForeignKey('self' , blank= True,null= True , default= 'find some friends bro',on_delete=models.SET_DEFAULT)
+    def __str__(self):
+        return f"{self.first_name} - {self.last_name}"
+    class Meta:
+        verbsoe_name = 'Owner'
+        verbsoe_name_plural = 'Owners'
+        ordering = ['first_name']
