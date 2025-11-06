@@ -8,7 +8,6 @@ class Pet(models.Model):
     age = models.PositiveSmallIntegerField(validators=[MinValueValidator(1)])
     species = models.CharField(max_length=60)
     description = models.TextField(blank=True, null=True)
-    phone = models.CharField(validators=[RegexValidator(r"^([+]?\d{1,2}[-\s]?|)\d{3}[-\s]?\d{3}[-\s]?\d{4}$")])
     image = models.CharField(max_length=250, null=True, blank=True)
     availability = models.BooleanField(default=True)
     adopted_time = models.DateTimeField(auto_now_add=True)
@@ -33,6 +32,7 @@ class Owner(models.Model):
     first_name = models.CharField(max_length=60)
     last_name = models.CharField(max_length=60)
     optional_message = models.TextField(blank=True, null=True)
+    phone = models.CharField(max_length=20,validators=[RegexValidator(r"^([+]?\d{1,2}[-\s]?|)\d{3}[-\s]?\d{3}[-\s]?\d{4}$")],null=True,blank=True)
     request_time = models.DateTimeField(auto_now_add=True)
     pet = models.ForeignKey(Pet,blank=True,
         null=True,on_delete=models.CASCADE)
