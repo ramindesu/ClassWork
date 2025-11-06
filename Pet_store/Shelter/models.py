@@ -33,7 +33,8 @@ class Owner(models.Model):
     last_name = models.CharField(max_length=60)
     optional_message = models.TextField(blank=True, null=True)
     request_time = models.DateTimeField(auto_now_add=True)
-    pet = models.ForeignKey(Pet, on_delete=models.CASCADE)
+    pet = models.ForeignKey(Pet,blank=True,
+        null=True,on_delete=models.CASCADE)
     sub_owner = models.ForeignKey(
         "self",
         blank=True,
