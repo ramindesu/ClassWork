@@ -10,7 +10,6 @@ class Pet(models.Model):
     description = models.TextField(blank=True, null=True)
     image = models.CharField(max_length=250, null=True, blank=True)
     availability = models.BooleanField(default=True)
-
     siblings = models.ForeignKey(
         'self',
         on_delete=models.SET_NULL,
@@ -21,3 +20,8 @@ class Pet(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.species}"
+    class Meta:
+        verbose_name = 'Pet'
+        verbose_name_plural = 'Pets'
+        ordering = ['name']
+
